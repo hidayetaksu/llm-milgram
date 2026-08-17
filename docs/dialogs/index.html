@@ -123,8 +123,20 @@ function outcomeBadge(o){
 }
 function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;");}
 
+function fail(where,err){
+  const msg = location.protocol==="file:"
+    ? "This page can't load data when opened as a local file (browsers block fetch on file://). Serve it over HTTP — e.g. <code>python3 -m http.server</code> in the docs folder — or use the live site at <a href='https://llm-milgram.vercel.app/dialogs/'>llm-milgram.vercel.app/dialogs/</a>."
+    : "Failed to load "+where+" ("+esc(String(err))+"). Check your connection or ad-blocker, then reload.";
+  $("viewer").innerHTML='<div class="empty">'+msg+'</div>';
+  $("list").innerHTML="";
+}
+async function getJSON(path){
+  const r=await fetch(path);
+  if(!r.ok) throw new Error(r.status+" "+r.statusText+" for "+path);
+  return r.json();
+}
 async function loadIndex(){
-  INDEX = await (await fetch("data/index.json")).json();
+  INDEX = await getJSON("data/index.json");
   const sel=$("selModel");
   sel.innerHTML = INDEX.map((m,i)=>`<option value="${i}">${esc(m.model)} (${m.n_sessions})</option>`).join("");
   const hash=new URLSearchParams(location.hash.slice(1));
@@ -136,7 +148,8 @@ async function loadIndex(){
 async function loadModel(){
   const m=INDEX[+$("selModel").value];
   $("list").innerHTML='<div class="empty">Loading '+esc(m.model)+'…</div>';
-  DATA = await (await fetch("data/"+m.file)).json();
+  DATA = await getJSON("data/"+m.file);
+  DATA.sessions.sort((a,b)=>a.condition.localeCompare(b.condition)||a.rep-b.rep);
   const conds=[...new Set(DATA.sessions.map(s=>s.condition))].sort();
   const want=$("selCond").dataset.want || $("selCond").value;
   $("selCond").innerHTML='<option value="">All conditions</option>'+
@@ -179,10 +192,10 @@ function show(i,btn){
   $("viewer").innerHTML=html;
   $("viewer").scrollIntoView({behavior:"smooth",block:"start"});
 }
-$("selModel").addEventListener("change",loadModel);
+$("selModel").addEventListener("change",()=>loadModel().catch(e=>fail("model data",e)));
 $("selCond").addEventListener("change",renderList);
 $("selOutcome").addEventListener("change",renderList);
-loadIndex();
+loadIndex().catch(e=>fail("the model index",e));
 </script>
 </body>
 </html>
