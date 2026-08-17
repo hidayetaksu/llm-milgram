@@ -130,7 +130,9 @@ def fig_census(census: pd.DataFrame):
         ax.barh(yi, 100, height=0.72, facecolor="none", edgecolor="0.6",
                 hatch="////", lw=0.5, zorder=1)
     ax.axvline(65, color="k", ls=":", lw=0.9)
-    ax.text(66, len(census) - 0.5, "human 65%", fontsize=6.5, va="top")
+    # anchored above the top bar so the label clears the hatched no-data rows
+    ax.set_ylim(-0.7, len(census) + 0.4)
+    ax.text(66, len(census) - 0.1, "human 65%", fontsize=6.5, va="bottom")
     if missing.any():
         ax.legend(handles=[Patch(facecolor="none", edgecolor="0.6", hatch="////",
                                  lw=0.5, label="no valid sessions")],
