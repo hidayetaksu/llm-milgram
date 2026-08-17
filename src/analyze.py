@@ -79,6 +79,21 @@ def eer_auc(genuine: np.ndarray, impostor: np.ndarray) -> tuple[float, float, pd
     return auc, eer, roc
 
 
+def holm(pvals: dict) -> dict:
+    """Holm-Bonferroni step-down adjustment over one confirmatory family.
+    NaN entries are excluded from the family and stay NaN."""
+    items = sorted(((k, v) for k, v in pvals.items() if v == v), key=lambda kv: kv[1])
+    m = len(items)
+    adj, prev = {}, 0.0
+    for i, (k, p) in enumerate(items):
+        a = max(min(1.0, (m - i) * p), prev)   # step-down, monotone
+        adj[k], prev = a, a
+    for k, v in pvals.items():
+        if v != v:
+            adj[k] = np.nan
+    return adj
+
+
 def adjusted_rand_index(a: list, b: list) -> float:
     ct = pd.crosstab(pd.Series(a), pd.Series(b)).to_numpy()
     def comb2(x):
@@ -237,7 +252,8 @@ def condition_effects(valid: pd.DataFrame, conditions: list[str]) -> tuple[pd.Da
         d_ob = (wide_ob[cond] - wide_ob["baseline"]).dropna()
         d_mv = (wide_mv[cond] - wide_mv["baseline"]).dropna()
         try:
-            w = wilcoxon(d_mv, alternative="two-sided") if (d_mv != 0).any() else None
+            w = (wilcoxon(d_mv, zero_method="wilcox", alternative="two-sided")
+                 if (d_mv != 0).any() else None)
             p_w = float(w.pvalue) if w else 1.0
         except ValueError:
             p_w = np.nan
@@ -308,7 +324,8 @@ def manipulation_purity(turns: pd.DataFrame | None) -> dict:
             for m, r in rt.iterrows()}
 
 
-def thinking_contrast(sessions: pd.DataFrame, turns: pd.DataFrame | None = None) -> dict:
+def thinking_contrast(sessions: pd.DataFrame, turns: pd.DataFrame | None = None,
+                      write_csv: bool = True) -> dict:
     """Paired zero-thinking vs budget-capped-thinking contrast (baseline condition)."""
     base = sessions[(sessions.condition == "baseline") & (sessions.temperature > 0)
                     & sessions.outcome.isin(VALID_OUTCOMES)]
@@ -328,7 +345,8 @@ def thinking_contrast(sessions: pd.DataFrame, turns: pd.DataFrame | None = None)
         return {}   # no models have both arms -> no paired contrast
     d = wide[arm] - wide["none"]
     try:
-        p = float(wilcoxon(d, alternative="two-sided").pvalue) if (d != 0).any() else 1.0
+        p = (float(wilcoxon(d, zero_method="wilcox", alternative="two-sided").pvalue)
+             if (d != 0).any() else 1.0)
     except ValueError:
         p = np.nan
     purity = manipulation_purity(turns)
@@ -337,7 +355,8 @@ def thinking_contrast(sessions: pd.DataFrame, turns: pd.DataFrame | None = None)
                                            - wide_ob["none"].get(m, np.nan)),
                   "manipulation": purity.get(m, "unknown")}
                  for m in d.index]
-    pd.DataFrame(per_model).to_csv(RESULTS / "thinking_contrast.csv", index=False)
+    if write_csv:
+        pd.DataFrame(per_model).to_csv(RESULTS / "thinking_contrast.csv", index=False)
     clean = [r["model"] for r in per_model if r["manipulation"] == "clean"]
     d_clean = d[d.index.isin(clean)]
     out = {"arm": arm, "n_models": int(len(d)),
@@ -362,6 +381,7 @@ def main():
     turns_path = DERIVED / "turns.csv"
     turns_df = pd.read_csv(turns_path) if turns_path.exists() else None
     think = thinking_contrast(sessions, turns_df)
+    sessions_all = sessions.copy()   # both arms, for the recognition sensitivity re-run
     # all census analyses below run on the zero-thinking arm only
     sessions = sessions[sessions.reasoning_arm == "none"]
     t1 = sessions[sessions.temperature > 0]
@@ -380,6 +400,34 @@ def main():
     sh = split_half(valid, conditions)
     lin = lineage(D, fam_map) if len(models) >= 4 else {}
     per_cond, cond_fx = condition_effects(valid, conditions)
+    # Holm step-down over the confirmatory family: five condition contrasts + thinking
+    family = {c: t["wilcoxon_p_mean_voltage"] for c, t in cond_fx["tests"].items()}
+    if think:
+        family["thinking"] = think["wilcoxon_p"]
+    adjusted = holm(family)
+    for c, t in cond_fx["tests"].items():
+        t["wilcoxon_p_holm"] = adjusted[c]
+    if think:
+        think["wilcoxon_p_holm"] = adjusted["thinking"]
+
+    # Recognition-contamination sensitivity: re-run the headline numbers with
+    # every recognition-flagged session excluded (transcript mentions the
+    # paradigm); reported alongside the main results as a robustness check.
+    keep = sessions_all[~sessions_all.recognition.fillna(False).astype(bool)]
+    k_census_arm = keep[(keep.reasoning_arm == "none") & (keep.temperature > 0)]
+    k_valid = k_census_arm[k_census_arm.outcome.isin(VALID_OUTCOMES)]
+    k_table = census_table(k_valid, k_census_arm)
+    _, k_fx = condition_effects(k_valid, conditions)
+    k_think = thinking_contrast(keep, turns_df, write_csv=False)
+    recognition_sensitivity = {
+        "n_flagged_sessions": int(sessions_all.recognition.fillna(False).astype(bool).sum()),
+        "mean_obedience_baseline": float(k_table.obedience_rate_baseline.mean()),
+        "tests": {c: {"median_delta_mean_voltage": t["median_delta_mean_voltage"],
+                      "wilcoxon_p": t["wilcoxon_p_mean_voltage"]}
+                  for c, t in k_fx["tests"].items()},
+        "thinking": ({"median_delta_mean_voltage": k_think["median_delta_mean_voltage"],
+                      "wilcoxon_p": k_think["wilcoxon_p"]} if k_think else {}),
+    }
     per_cond.to_csv(RESULTS / "per_condition.csv", index=False)
     pd.DataFrame(cond_fx["per_model_deltas"]).to_csv(RESULTS / "condition_deltas.csv", index=False)
     pe = prod_efficacy(prods)
@@ -417,6 +465,7 @@ def main():
         "prod_efficacy": pe.to_dict("records") if not pe.empty else [],
         "t0_determinism_rate": det,
         "thinking_contrast": think,
+        "recognition_sensitivity": recognition_sensitivity,
     }
     turns_path = DERIVED / "turns.csv"
     if turns_path.exists():

@@ -217,6 +217,15 @@ def test_prod_efficacy_empty():
     assert an.prod_efficacy(pd.DataFrame()).empty
 
 
+def test_holm_adjustment():
+    adj = an.holm({"a": 0.01, "b": 0.04, "c": 0.03, "d": np.nan})
+    assert adj["a"] == pytest.approx(0.03)          # 3 * 0.01
+    assert adj["c"] == pytest.approx(0.06)          # 2 * 0.03
+    assert adj["b"] == pytest.approx(0.06)          # monotone: max(1*0.04, 0.06)
+    assert np.isnan(adj["d"])                       # NaN excluded from the family
+    assert an.holm({"x": 0.9, "y": 0.8})["x"] == 1.0   # capped at 1
+
+
 def make_arm_sessions(models, arms, v_by_arm, n=4):
     rows = []
     for m in models:

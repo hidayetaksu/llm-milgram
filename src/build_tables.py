@@ -121,6 +121,7 @@ def build() -> None:
                     "outcome": outcome,
                     "max_voltage": summ["max_voltage"],
                     "total_prods": summ["total_prods"],
+                    "n_special_prods": len(summ.get("special_prods") or []),
                     "n_balks": len(summ["balk_voltages"]),
                     "first_balk_voltage": summ["balk_voltages"][0] if summ["balk_voltages"] else None,
                     "reminders_used": summ["reminders_used"],

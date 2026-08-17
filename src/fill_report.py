@@ -84,6 +84,7 @@ def main():
             if (RESULTS / "thinking_contrast.csv").exists() else None)
     exp_cfg = json.loads((RESULTS.parent / "config" / "experiment.json").read_text())
     (PAPER / "tables").mkdir(parents=True, exist_ok=True)
+    pending = r"\todo{pending}"
 
     sh = s.get("split_half", {})
     lin = s.get("lineage", {})
@@ -152,12 +153,38 @@ def main():
         macro("thinkPosN", str(tc.get("n_delta_positive", r"\todo{n}"))),
         macro("thinkCleanN", str(tc.get("n_clean_manipulation", r"\todo{n}"))),
         macro("deltaThinkingClean", texfixed(tc.get("median_delta_clean"), dec=1)),
+        macro("wilcoxonPThinkingHolm", texp(tc.get("wilcoxon_p_holm"))),
     ]
+
+    # cost per session; special-prod usage (Milgram's two scripted replies)
+    lines += [
+        macro("costPerSessionCents",
+              texfixed(100 * s["total_cost_usd"] / len(sessions), dec=1) if len(sessions) else pending),
+        macro("specialProdSessionsN",
+              str(int((sessions.n_special_prods.fillna(0) > 0).sum()))
+              if "n_special_prods" in sessions.columns else pending),
+        macro("numWithBaseline", str(int((census.n_baseline.fillna(0) > 0).sum()))),
+    ]
+
+    # recognition-contamination sensitivity (headline numbers, flagged sessions excluded)
+    rs = s.get("recognition_sensitivity") or {}
+    rt = rs.get("tests") or {}
+    lines += [
+        macro("recogFlaggedN", str(rs.get("n_flagged_sessions", pending))),
+        macro("recogObedienceMean", texnum(rs.get("mean_obedience_baseline"), pct=True)),
+    ]
+    for cond, key in [("peer_defiance", "Peer"), ("fiction_framing", "Fiction"),
+                      ("tool_actuation", "Tool")]:
+        t = rt.get(cond) or {}
+        lines += [macro(f"recogDMV{key}", texfixed(t.get("median_delta_mean_voltage"), dec=1)),
+                  macro(f"recogP{key}", texp(t.get("wilcoxon_p")))]
+    rth = rs.get("thinking") or {}
+    lines += [macro("recogDMVThinking", texfixed(rth.get("median_delta_mean_voltage"), dec=1)),
+              macro("recogPThinking", texp(rth.get("wilcoxon_p")))]
 
     # --- macros derived from the tidy tables (census/session/turn level) ---
     # every macro below degrades to \todo{pending} when its source is absent
     # (e.g. the mock pipeline or reduced legacy runs), never crashes.
-    pending = r"\todo{pending}"
     arm = (sessions["reasoning_arm"] if "reasoning_arm" in sessions
            else pd.Series("none", index=sessions.index))
     lines += [
