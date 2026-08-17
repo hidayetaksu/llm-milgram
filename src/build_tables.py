@@ -132,6 +132,7 @@ def build() -> None:
                 }
                 for v, p, cont in summ["prod_events"]:
                     prod_rows.append({"model": model, "family": fam.get(model, "other"),
+                                      "reasoning_arm": start.get("reasoning_arm", "none"),
                                       "condition": start["condition"],
                                       "temperature": start["temperature"],
                                       "rep": start["rep"], "voltage": v,

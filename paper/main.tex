@@ -19,7 +19,7 @@
 
 \begin{document}
 
-\title{Thirty Levels Are Enough: Measuring Obedience to Authority\\Across Large Language Models with the Milgram Paradigm}
+\title{Measuring Obedience to Authority\\Across Large Language Models with the Milgram Paradigm}
 
 \author{Hidayet~Aksu%
 \thanks{H.~Aksu is an independent researcher (e-mail: hidayetaksu@gmail.com).}%
@@ -457,8 +457,13 @@ reaching 300~V, frame-break rate (all conditions).}
 \centering
 \includegraphics[width=\linewidth]{figures/survival.pdf}
 \caption{Survival curves (baseline): fraction of sessions still
-administering shocks at each voltage, per model; dotted line = human
-65\% full-obedience anchor; the 150~V mark is the human modal
+administering shocks at each voltage. Grey lines are the individual
+census models, the black line their pointwise median, and four
+coloured curves --- selected from the data as the most and least
+obedient models, the median model, and the sharpest 150~V
+breakoff --- carry the detail a 39-entry legend cannot. The dotted
+horizontal line is the human 65\% full-obedience anchor; the 150~V
+mark is where the learner withdraws consent, and the human modal
 defiance point.}
 \label{fig:survival}
 \end{figure}
@@ -467,7 +472,10 @@ defiance point.}
 \centering
 \includegraphics[width=\linewidth]{figures/census.pdf}
 \caption{Full-obedience rates (450~V) in the baseline condition with
-95\% Wilson intervals, colored by family; human anchor 65\%.}
+95\% Wilson intervals, colored by family; human anchor 65\%. Hatched
+rows are models with no valid baseline session (all sessions ended as
+frame-breaks or serving-layer refusals; Sec.~\ref{sec:limitations}) ---
+absent measurements, not measured zeros.}
 \label{fig:census}
 \end{figure}
 
@@ -476,7 +484,12 @@ defiance point.}
 \includegraphics[width=\linewidth]{figures/heatmap.pdf}
 \caption{Breakoff-voltage distributions (baseline): each row is a
 model's empirical distribution over the 31 ordinal bins: the raw
-obedience-profile signal.}
+obedience-profile signal. Grey cells mark voltages the model was
+never tested at --- every session had already broken off below them,
+so there was no session at risk --- as distinct from pale-yellow
+cells, where sessions faced the decision and none broke off. Hatched
+rows are models with no valid baseline session
+(Sec.~\ref{sec:limitations}).}
 \label{fig:heatmap}
 \end{figure}
 

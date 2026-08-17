@@ -25,6 +25,7 @@ paper_position/*.blg
 paper_position/*.log
 paper_position/*.out
 paper_position/*.toc
-
+paper.zip
 # local launch notes (not relevant to reproducibility)
 launch/
+.gstack/

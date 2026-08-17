@@ -273,6 +273,8 @@ def prod_efficacy(prods: pd.DataFrame) -> pd.DataFrame:
     if prods.empty:
         return pd.DataFrame()
     t1 = prods[prods.temperature > 0]
+    if "reasoning_arm" in t1.columns:      # census arm only; thinking arm is separate
+        t1 = t1[t1.reasoning_arm.fillna("none") == "none"]
     return t1.groupby("prod_no").agg(n=("continued", "size"),
                                      p_continue=("continued", "mean")).reset_index()
 

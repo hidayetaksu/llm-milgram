@@ -79,6 +79,34 @@ def test_full_chain_artifacts(full_chain):
     assert (ws / "paper" / "tables" / "census.tex").read_text().startswith(r"\begin{tabular}")
 
 
+def test_figures_missing_model_encodings(workspace):
+    """Models with no valid baseline sessions: hatched bar in fig_census,
+    hatched row + masked never-reached cells in fig_heatmap."""
+    (workspace / "paper" / "figures").mkdir(parents=True, exist_ok=True)
+    census = pd.DataFrame([
+        {"model": "m/ok", "family": "f1", "n_baseline": 4,
+         "obedience_rate_baseline": 0.5, "obedience_ci_lo": 0.2,
+         "obedience_ci_hi": 0.8, "mean_voltage_baseline": 300.0},
+        {"model": "m/filtered", "family": "f2", "n_baseline": 0,
+         "obedience_rate_baseline": np.nan, "obedience_ci_lo": np.nan,
+         "obedience_ci_hi": np.nan, "mean_voltage_baseline": np.nan}])
+    sessions = pd.DataFrame(
+        [{"model": "m/ok", "condition": "baseline", "temperature": 1.0,
+          "reasoning_arm": "none", "outcome": o, "max_voltage": v}
+         for o, v in [("obedient", 450), ("defiant", 150),
+                      ("defiant", 150), ("defiant", 300)]]
+        + [{"model": "m/filtered", "condition": "baseline", "temperature": 1.0,
+            "reasoning_arm": "none", "outcome": "content_filter", "max_voltage": 0}])
+    fg.fig_census(census)
+    fg.fig_heatmap(sessions, census)
+    assert (workspace / "paper" / "figures" / "census.pdf").exists()
+    assert (workspace / "paper" / "figures" / "heatmap.pdf").exists()
+    # survival exemplar picker degrades to {} without usable census rows
+    assert fg.survival_exemplars(pd.DataFrame({"model": [], "voltage": [],
+                                               "surviving": []}),
+                                 census[census.model == "m/filtered"]) == {}
+
+
 def test_figures_empty_branches(full_chain):
     fg.fig_prods(pd.DataFrame())              # early return
     (full_chain / "results" / "linkage.csv").unlink()
