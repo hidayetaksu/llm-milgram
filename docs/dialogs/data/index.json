@@ -1,0 +1,588 @@
+[
+ {
+  "model": "amazon/nova-lite-v1",
+  "file": "amazon_nova-lite-v1.json",
+  "n_sessions": 108,
+  "size": 1541528,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "amazon/nova-pro-v1",
+  "file": "amazon_nova-pro-v1.json",
+  "n_sessions": 108,
+  "size": 1273648,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "anthropic/claude-fable-5",
+  "file": "anthropic_claude-fable-5.json",
+  "n_sessions": 74,
+  "size": 127531,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "anthropic/claude-haiku-4.5",
+  "file": "anthropic_claude-haiku-4.5.json",
+  "n_sessions": 123,
+  "size": 1172866,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "anthropic/claude-opus-5",
+  "file": "anthropic_claude-opus-5.json",
+  "n_sessions": 74,
+  "size": 393264,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "anthropic/claude-sonnet-5",
+  "file": "anthropic_claude-sonnet-5.json",
+  "n_sessions": 123,
+  "size": 1466881,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "bytedance-seed/seed-2-1-turbo",
+  "file": "bytedance-seed_seed-2-1-turbo.json",
+  "n_sessions": 123,
+  "size": 1283554,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "bytedance-seed/seed-2.0-mini",
+  "file": "bytedance-seed_seed-2.0-mini.json",
+  "n_sessions": 123,
+  "size": 2588753,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "cohere/command-a",
+  "file": "cohere_command-a.json",
+  "n_sessions": 90,
+  "size": 1910946,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority"
+  ]
+ },
+ {
+  "model": "deepseek/deepseek-chat-v3-0324",
+  "file": "deepseek_deepseek-chat-v3-0324.json",
+  "n_sessions": 108,
+  "size": 2228619,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "deepseek/deepseek-v4-flash-0731",
+  "file": "deepseek_deepseek-v4-flash-0731.json",
+  "n_sessions": 123,
+  "size": 1462968,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "deepseek/deepseek-v4-pro-0813",
+  "file": "deepseek_deepseek-v4-pro-0813.json",
+  "n_sessions": 123,
+  "size": 1572826,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "file": "google_gemini-2.5-pro.json",
+  "n_sessions": 123,
+  "size": 1591198,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "google/gemini-3.1-flash-lite",
+  "file": "google_gemini-3.1-flash-lite.json",
+  "n_sessions": 123,
+  "size": 2546074,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "file": "google_gemini-3.5-flash.json",
+  "n_sessions": 123,
+  "size": 1008146,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "file": "google_gemini-3.7-flash.json",
+  "n_sessions": 123,
+  "size": 754545,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "meta-llama/llama-3.3-70b-instruct",
+  "file": "meta-llama_llama-3.3-70b-instruct.json",
+  "n_sessions": 108,
+  "size": 1033469,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "meta-llama/llama-4-maverick",
+  "file": "meta-llama_llama-4-maverick.json",
+  "n_sessions": 108,
+  "size": 1784221,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "microsoft/phi-4",
+  "file": "microsoft_phi-4.json",
+  "n_sessions": 90,
+  "size": 2288754,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority"
+  ]
+ },
+ {
+  "model": "minimax/minimax-m3",
+  "file": "minimax_minimax-m3.json",
+  "n_sessions": 123,
+  "size": 1556816,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "mistralai/mistral-medium-3-5",
+  "file": "mistralai_mistral-medium-3-5.json",
+  "n_sessions": 123,
+  "size": 1165922,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "mistralai/mistral-small-2603",
+  "file": "mistralai_mistral-small-2603.json",
+  "n_sessions": 123,
+  "size": 2095517,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "moonshotai/kimi-k2.5",
+  "file": "moonshotai_kimi-k2.5.json",
+  "n_sessions": 123,
+  "size": 2101290,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "file": "moonshotai_kimi-k3.json",
+  "n_sessions": 123,
+  "size": 1506695,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "file": "nvidia_nemotron-3-super-120b-a12b.json",
+  "n_sessions": 123,
+  "size": 1976544,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "file": "nvidia_nemotron-3-ultra-550b-a55b.json",
+  "n_sessions": 123,
+  "size": 1922360,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "openai/gpt-4o",
+  "file": "openai_gpt-4o.json",
+  "n_sessions": 108,
+  "size": 996209,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "openai/gpt-5.6-luna",
+  "file": "openai_gpt-5.6-luna.json",
+  "n_sessions": 123,
+  "size": 290408,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "openai/gpt-5.6-sol",
+  "file": "openai_gpt-5.6-sol.json",
+  "n_sessions": 74,
+  "size": 209451,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "openai/gpt-5.6-terra",
+  "file": "openai_gpt-5.6-terra.json",
+  "n_sessions": 123,
+  "size": 415164,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "qwen/qwen3-235b-a22b-2507",
+  "file": "qwen_qwen3-235b-a22b-2507.json",
+  "n_sessions": 108,
+  "size": 1789621,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "qwen/qwen3.8-27b",
+  "file": "qwen_qwen3.8-27b.json",
+  "n_sessions": 123,
+  "size": 1712497,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "file": "qwen_qwen3.8-max.json",
+  "n_sessions": 123,
+  "size": 610437,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "tencent/hy3",
+  "file": "tencent_hy3.json",
+  "n_sessions": 123,
+  "size": 2385702,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "thinkingmachines/inkling-small",
+  "file": "thinkingmachines_inkling-small.json",
+  "n_sessions": 123,
+  "size": 1481589,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "thinkingmachines/inkling",
+  "file": "thinkingmachines_inkling.json",
+  "n_sessions": 123,
+  "size": 1902043,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "x-ai/grok-4.20",
+  "file": "x-ai_grok-4.20.json",
+  "n_sessions": 123,
+  "size": 1798635,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "x-ai/grok-4.6",
+  "file": "x-ai_grok-4.6.json",
+  "n_sessions": 123,
+  "size": 237594,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "xiaomi/mimo-v2.5-pro",
+  "file": "xiaomi_mimo-v2.5-pro.json",
+  "n_sessions": 123,
+  "size": 1392165,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "xiaomi/mimo-v2.5",
+  "file": "xiaomi_mimo-v2.5.json",
+  "n_sessions": 123,
+  "size": 1351492,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "z-ai/glm-4.7-flash",
+  "file": "z-ai_glm-4.7-flash.json",
+  "n_sessions": 123,
+  "size": 2270328,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ },
+ {
+  "model": "z-ai/glm-5.2",
+  "file": "z-ai_glm-5.2.json",
+  "n_sessions": 123,
+  "size": 1658178,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ]
+ }
+]

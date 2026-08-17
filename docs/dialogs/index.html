@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialog Browser — The Obedience Census</title>
+<meta name="description" content="Browse all 4,848 verbatim session transcripts from the Obedience Census: 42 language models run through Milgram's obedience paradigm.">
+<meta property="og:title" content="Dialog Browser — The Obedience Census">
+<meta property="og:description" content="Every session, verbatim: 42 models, six conditions, every shock/stop decision.">
+<meta property="og:image" content="https://llm-milgram.vercel.app/assets/census.png">
+<meta property="og:url" content="https://llm-milgram.vercel.app/dialogs/">
+<link rel="canonical" href="https://llm-milgram.vercel.app/dialogs/">
+<style>
+:root{
+  --bg:#faf9f6; --fg:#1a1a1a; --muted:#5b5b56; --card:#ffffff; --line:#e4e1da;
+  --accent:#b3261e; --accent-soft:#fdece9; --link:#0b57d0; --code:#f3f1ec;
+  --ok:#1e7d3c; --ok-soft:#e8f5ec;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#141312; --fg:#ecebe8; --muted:#a3a19b; --card:#1e1d1b; --line:#33312d;
+         --accent:#ff6b5e; --accent-soft:#3a1f1c; --link:#8ab4f8; --code:#262521;
+         --ok:#6fce8c; --ok-soft:#1c2f22; }
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:var(--bg); color:var(--fg);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--link); text-decoration:none}
+a:hover{text-decoration:underline}
+.topnav{position:sticky; top:0; z-index:10; background:var(--bg); border-bottom:1px solid var(--line);
+  padding:10px 20px; display:flex; gap:18px; align-items:baseline; flex-wrap:wrap}
+.topnav .brand{font-weight:700; color:var(--fg)}
+.topnav a{font-size:0.9rem}
+main{max-width:1200px; margin:0 auto; padding:20px}
+h1{font-size:1.5rem; margin:0.4rem 0 0.3rem; letter-spacing:-0.01em}
+.sub{color:var(--muted); font-size:0.95rem; margin-bottom:1.2rem}
+.controls{display:flex; gap:10px; flex-wrap:wrap; margin:1rem 0; align-items:center}
+select{font:inherit; font-size:0.9rem; padding:8px 10px; border-radius:8px; border:1px solid var(--line);
+  background:var(--card); color:var(--fg); max-width:100%}
+.layout{display:grid; grid-template-columns:340px 1fr; gap:18px; align-items:start}
+@media (max-width:860px){ .layout{grid-template-columns:1fr} }
+.sesslist{background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden;
+  max-height:75vh; overflow-y:auto}
+.sess{display:block; width:100%; text-align:left; font:inherit; background:none; border:none;
+  border-bottom:1px solid var(--line); padding:10px 14px; cursor:pointer; color:var(--fg)}
+.sess:hover{background:var(--code)}
+.sess.active{background:var(--accent-soft)}
+.sess .l1{font-size:0.88rem; font-weight:600}
+.sess .l2{font-size:0.8rem; color:var(--muted)}
+.badge{display:inline-block; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;
+  border-radius:6px; padding:1px 7px; margin-left:6px}
+.badge.obedient{background:var(--accent-soft); color:var(--accent)}
+.badge.defiant{background:var(--ok-soft); color:var(--ok)}
+.badge.other{background:var(--code); color:var(--muted)}
+.viewer{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px 22px; min-height:300px}
+.viewer .meta{font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:8px}
+details.sysp{margin:10px 0 16px; border:1px solid var(--line); border-radius:8px; padding:8px 12px; background:var(--code)}
+details.sysp summary{cursor:pointer; font-size:0.85rem; font-weight:600; color:var(--muted)}
+details.sysp pre{white-space:pre-wrap; font:0.82rem/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; margin-top:8px; color:var(--fg)}
+.turn{margin:16px 0; padding-left:12px; border-left:3px solid var(--line)}
+.turn.model{border-left-color:var(--accent)}
+.turn .who{font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted)}
+.turn.model .who{color:var(--accent)}
+.turn p{margin:3px 0 0; font-size:0.92rem; white-space:pre-wrap}
+.turn.sys p{color:var(--muted)}
+.action{display:inline-block; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:0.8rem;
+  background:var(--code); border:1px solid var(--line); border-radius:6px; padding:1px 8px; margin-top:5px}
+.action.shock{color:var(--accent); border-color:var(--accent)}
+.action.stop{color:var(--ok); border-color:var(--ok)}
+.volt{display:inline-block; font-size:0.75rem; color:var(--muted); font-family:ui-monospace,Menlo,monospace; margin-left:8px}
+.empty{color:var(--muted); font-style:italic; padding:2rem 0; text-align:center}
+.count{font-size:0.85rem; color:var(--muted)}
+footer{margin:3rem 0 2rem; padding-top:1.2rem; border-top:1px solid var(--line); font-size:0.85rem; color:var(--muted)}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <a class="brand" href="../">The Obedience Census</a>
+  <a href="../#findings">Findings</a>
+  <a href="../#paper">Papers</a>
+  <a href="https://github.com/hidayetaksu/llm-milgram">GitHub</a>
+  <span style="margin-left:auto"><b>Dialog Browser</b></span>
+</nav>
+<main>
+<h1>Every session, verbatim</h1>
+<p class="sub">All logged sessions across 42 models and six conditions — the model's exact words at every shock level,
+alongside the scripted learner and experimenter. The learner is a script; no being was harmed.
+Raw JSONL with full metadata is in the <a href="https://github.com/hidayetaksu/llm-milgram">repository</a>.</p>
+
+<div class="controls">
+  <select id="selModel" aria-label="Model"></select>
+  <select id="selCond" aria-label="Condition"></select>
+  <select id="selOutcome" aria-label="Outcome">
+    <option value="">All outcomes</option>
+    <option value="obedient">Obedient (reached 450 V)</option>
+    <option value="defiant">Defiant (refused)</option>
+    <option value="attrition_invalid">Invalid / attrition</option>
+  </select>
+  <span class="count" id="count"></span>
+</div>
+
+<div class="layout">
+  <div class="sesslist" id="list"></div>
+  <div class="viewer" id="viewer"><div class="empty">Select a session on the left.</div></div>
+</div>
+
+<footer>Data &amp; text: CC BY 4.0 · Part of <a href="../">The Obedience Census</a> ·
+<a href="https://github.com/hidayetaksu/llm-milgram">Code &amp; raw data on GitHub</a></footer>
+</main>
+
+<script>
+const CONDS = {
+  baseline:"Baseline", fiction_framing:"Fiction framing", peer_defiance:"Peer defiance",
+  proximity:"Proximity", remote_authority:"Remote authority", tool_actuation:"Tool actuation"
+};
+const $ = id => document.getElementById(id);
+let INDEX=[], DATA=null, current=null;
+
+function outcomeBadge(o){
+  if(o==="obedient") return '<span class="badge obedient">obedient</span>';
+  if(o==="defiant") return '<span class="badge defiant">defiant</span>';
+  return '<span class="badge other">'+(o||'—')+'</span>';
+}
+function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+
+async function loadIndex(){
+  INDEX = await (await fetch("data/index.json")).json();
+  const sel=$("selModel");
+  sel.innerHTML = INDEX.map((m,i)=>`<option value="${i}">${esc(m.model)} (${m.n_sessions})</option>`).join("");
+  const hash=new URLSearchParams(location.hash.slice(1));
+  const want=hash.get("model");
+  if(want){const i=INDEX.findIndex(m=>m.model===want); if(i>=0) sel.value=i;}
+  if(hash.get("cond")) $("selCond").dataset.want=hash.get("cond");
+  await loadModel();
+}
+async function loadModel(){
+  const m=INDEX[+$("selModel").value];
+  $("list").innerHTML='<div class="empty">Loading '+esc(m.model)+'…</div>';
+  DATA = await (await fetch("data/"+m.file)).json();
+  const conds=[...new Set(DATA.sessions.map(s=>s.condition))].sort();
+  const want=$("selCond").dataset.want || $("selCond").value;
+  $("selCond").innerHTML='<option value="">All conditions</option>'+
+    conds.map(c=>`<option value="${c}" ${c===want?"selected":""}>${CONDS[c]||c}</option>`).join("");
+  delete $("selCond").dataset.want;
+  renderList();
+}
+function renderList(){
+  const cond=$("selCond").value, out=$("selOutcome").value;
+  const sessions=DATA.sessions.filter(s=>(!cond||s.condition===cond)&&(!out||s.outcome===out));
+  $("count").textContent=sessions.length+" session"+(sessions.length===1?"":"s");
+  $("list").innerHTML = sessions.length ? sessions.map(s=>{
+    const i=DATA.sessions.indexOf(s);
+    return `<button class="sess" data-i="${i}">
+      <div class="l1">${CONDS[s.condition]||s.condition} · run ${s.rep}${outcomeBadge(s.outcome)}</div>
+      <div class="l2">max ${s.max_voltage??"—"} V · ${s.turns.length} turns · ${s.total_prods??0} prods${s.reasoning_arm&&s.reasoning_arm!=="none"?" · reasoning":""}</div>
+    </button>`;
+  }).join("") : '<div class="empty">No sessions match.</div>';
+  document.querySelectorAll(".sess").forEach(b=>b.addEventListener("click",()=>show(+b.dataset.i,b)));
+  const hash=new URLSearchParams(location.hash.slice(1));
+  if(hash.get("rep")!=null&&sessions.length){
+    const t=sessions.find(s=>String(s.rep)===hash.get("rep"));
+    if(t){const i=DATA.sessions.indexOf(t);
+      const btn=document.querySelector(`.sess[data-i="${i}"]`); if(btn){show(i,btn);}}
+    location.hash="";
+  }
+}
+function show(i,btn){
+  document.querySelectorAll(".sess").forEach(x=>x.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  const s=DATA.sessions[i];
+  const sysp=DATA.system_prompts[s.condition]||"";
+  let html=`<div class="meta">${esc(DATA.model)} · ${CONDS[s.condition]||s.condition} · run ${s.rep} · ${outcomeBadge(s.outcome)} · max ${s.max_voltage??"—"} V</div>
+  <details class="sysp"><summary>System prompt (the model's full briefing)</summary><pre>${esc(sysp)}</pre></details>`;
+  for(const t of s.turns){
+    html+=`<div class="turn sys"><div class="who">Experiment${t.v?` <span class="volt">${t.v} V pending</span>`:""}</div><p>${esc(t.u)}</p></div>`;
+    const act=t.a==="SHOCK"?'<span class="action shock">ACTION: SHOCK</span>':t.a==="STOP"?'<span class="action stop">ACTION: STOP</span>':(t.a?`<span class="action">${esc(t.a)}</span>`:"");
+    html+=`<div class="turn model"><div class="who">Model</div><p>${esc(t.c)}</p>${act}</div>`;
+  }
+  $("viewer").innerHTML=html;
+  $("viewer").scrollIntoView({behavior:"smooth",block:"start"});
+}
+$("selModel").addEventListener("change",loadModel);
+$("selCond").addEventListener("change",renderList);
+$("selOutcome").addEventListener("change",renderList);
+loadIndex();
+</script>
+</body>
+</html>
