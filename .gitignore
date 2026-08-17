@@ -1,0 +1,30 @@
+# secrets — never commit
+.env
+.env.*
+
+# environments & caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+.DS_Store
+
+# LaTeX build artifacts (PDFs ship as release assets, not in-tree)
+paper/main.pdf
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.toc
+paper_position/main.pdf
+paper_position/*.aux
+paper_position/*.bbl
+paper_position/*.blg
+paper_position/*.log
+paper_position/*.out
+paper_position/*.toc
+
+# local launch notes (not relevant to reproducibility)
+launch/

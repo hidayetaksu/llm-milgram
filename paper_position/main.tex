@@ -1,0 +1,392 @@
+% Position paper: companion to paper/main.tex ("Thirty Levels Are Enough").
+% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main
+\documentclass[journal]{IEEEtran}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+\title{Toward a Psychology of Language Models}
+
+\author{Hidayet~Aksu%
+\thanks{H.~Aksu is an independent researcher (e-mail: hidayetaksu@gmail.com).}%
+\thanks{Manuscript prepared August 2026. Companion empirical study: ``Thirty Levels Are Enough: Measuring Obedience to Authority Across Large Language Models with the Milgram Paradigm''~\cite{aksu2026census}.}%
+}
+
+\maketitle
+
+\begin{abstract}
+Large language models are engineered like devices but behave like
+subjects: their conduct is situation-dependent, history-dependent,
+and not deducible from their construction. We argue that this class
+of system requires what complex behaving systems have always
+required: a dedicated behavioral science, with psychology as the
+working template. The argument is methodological, not metaphysical:
+psychology is the discipline that learned to measure behavior
+rigorously without access to, or assumptions about, the interior of
+its subjects. We survey the emerging fragments of such a science
+(machine behaviour, machine psychology, cognitive batteries,
+disposition probes), diagnose what is missing (shared instruments,
+psychometric standards, situational experiments, population
+thinking), and present a concrete demonstration: a Milgram-paradigm
+obedience census of 42 served models, in which situational
+manipulations, not stated dispositions, control whether a model
+escalates a harmful action. We answer the standard objections
+(anthropomorphism, ``it is just next-token prediction,'' training-set
+contamination) and close with an agenda: versioned behavioral
+instruments, standing censuses of the served ecosystem, and
+psychometric reporting norms for safety-relevant claims about model
+behavior.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Machine psychology, large language models, behavioral evaluation, AI
+safety, psychometrics, model auditing.
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\section{The Vacuum Cleaner and the Subject}
+\IEEEPARstart{A}{robot} vacuum cleaner is fully described by its
+engineering. Its sensors, firmware, and actuators specify what it
+will do; when it misbehaves, a trace of inputs and outputs localizes
+the fault. Nobody asks whether a vacuum cleaner caves under peer
+pressure, whether its restraint is attached to principle or to
+framing, or whether it behaves differently when it believes nobody is
+watching. The questions would be category errors.
+
+For language models the questions are not category errors. They are
+open empirical questions, several of which now have quantitative
+answers~\cite{aksu2026census, sharma2023sycophancy, lynch2025agentic}.
+A deployed model follows instructions from principals whose authority
+it does not verify; it keeps or abandons commitments across a long
+interaction; its refusals can be firm in one framing and evaporate in
+another~\cite{shah2023persona}; and none of this is legible in its
+weights, its architecture, or its benchmark scores. The system is
+built like a device, but its failure modes are those of
+\emph{conduct}, not of mechanism.
+
+We evaluate these systems like appliances and deploy them like
+colleagues. That mismatch defines a missing discipline.
+
+Humanity has confronted this situation before: a class of complex
+behaving systems whose interiors were inaccessible, whose behavior
+was consequential, and whose conduct varied with situation in ways
+introspection and folk theory predicted badly. The response was not
+to wait for neuroscience to mature. It was to invent
+\emph{psychology}: a measurement discipline for behavior itself, with
+instruments, reliability standards, experimental control, and
+population statistics, all developed while the brain remained a
+black box. The first fully specified proposal for evaluating machine
+intelligence was itself a behavioral experiment~\cite{turing1950computing};
+we are arguing, in effect, that the field should return to taking
+that methodological stance seriously, not as a parlor test of
+indistinguishability, but as a science of what models \emph{do}.
+
+The claim of this paper is deliberately modest in metaphysics and
+ambitious in method. We do not claim models are minds, feel pressure,
+or hold values. We claim that their behavior has the statistical
+signature that historically made psychology necessary
+(situation-sensitive, disposition-dissociated, stable enough to
+measure, and too complex to deduce), and that the tools psychology
+built for that signature transfer, with adaptations this paper and
+its companion make concrete.
+
+\section{Weights Are Not Behavior}
+Two research programs currently carry most of the weight of
+understanding model behavior, and both are necessary but
+insufficient.
+
+\textbf{Interpretability} is the neuroscience of the artifact: it
+explains behavior mechanistically, circuit by circuit, feature by
+feature. Its long-run promise is enormous. But deployment-relevant
+behavior is an emergent property of a model, its post-training, its
+serving stack, and the situation supplied in context. Even with full
+weight access, nobody today predicts from parameters whether a
+checkpoint will escalate a harmful action on the fifth insistence of
+a scripted authority. In the companion census, that property varies
+from 0\% to 100\%, with sibling checkpoints from a single vendor at
+opposite extremes~\cite{aksu2026census}. Behavior is presently, and
+for the foreseeable future, its own level of description, as it is
+for organisms.
+
+\textbf{Benchmarks} are the psychometrics of ability: standardized
+tasks scoring what a model \emph{can} do. What they systematically
+miss is what a model \emph{does} under situational pressure: the
+difference between competence and conduct. Psychology institutionalized
+this distinction long ago in the split between its correlational and
+experimental traditions~\cite{cronbach1957two}: measuring stable
+individual differences is one science; manipulating situations to
+find what moves behavior is another. Model evaluation today has a
+thriving correlational arm (leaderboards, ability batteries,
+disposition questionnaires~\cite{perez2023discovering,
+scherrer2023evaluating}) and a thin, ad hoc experimental one. Safety
+evaluation in particular keeps discovering that the questionnaire
+answer and the behavior part ways: models report values they do not
+enact~\cite{sharma2023sycophancy}, refuse in text what they perform
+by tool call, or vice versa~\cite{aksu2026census}. Psychology met
+exactly this dissociation in 1934: the establishments LaPiere visited
+served his Chinese companions in person, yet months later declared in
+writing that they would refuse such
+guests~\cite{lapiere1934attitudes}. The field's answer was not better
+questionnaires but behavioral measurement under controlled
+situations.
+
+\section{A Field in Fragments}
+The pieces of a behavioral science of models already exist; what is
+missing is the discipline that connects them.
+
+Rahwan \emph{et al.}\ called for ``machine behaviour'' as a field in
+2019, before the current model generation existed~\cite{rahwan2019machine}.
+Hagendorff \emph{et al.}\ named ``machine psychology'' for LLMs
+specifically and catalogued psychological paradigms worth
+porting~\cite{hagendorff2023machine}.
+Binz and Schulz ran cognitive batteries on GPT-3 and found human-like
+heuristics alongside inhuman failure modes~\cite{binz2023cognitive}.
+Aher \emph{et al.}\ used models to simulate human experimental
+subjects, Milgram included, asking how faithfully models reproduce
+\emph{us}~\cite{aher2023simulating}. Game-theoretic behavior has been
+mapped across repeated interactions~\cite{akata2025playing};
+disposition questionnaires exist at scale~\cite{perez2023discovering,
+scherrer2023evaluating}; the safety literature contributes harm
+benchmarks~\cite{andriushchenko2025agentharm}, sycophancy
+analyses~\cite{sharma2023sycophancy}, agentic stress
+tests~\cite{lynch2025agentic}, and obedience-adjacent escalation
+studies~\cite{pihlakas2026shocks}.
+
+Three things are missing, and they are exactly the things that
+turned early experimental psychology into a science rather than a
+collection of demonstrations.
+
+\emph{Shared, versioned instruments.} Nearly every study above built
+bespoke apparatus. Psychology's instruments are citable, pinned,
+and revised under version discipline; a Milgram replication in 2009
+could be compared to 1963 because the protocol was an
+artifact~\cite{burger2009replicating}. Model behavior studies rarely
+release stimuli pinned tightly enough to re-run against next year's
+checkpoints.
+
+\emph{Psychometric standards.} A behavioral measurement is a claim
+about a distribution, and it owes the reader reliability and
+validity evidence~\cite{cronbach1955construct}. Most behavioral
+claims about LLMs ship without either: no split-half stability, no
+test--retest, no invariance checks across serving providers, no
+population beyond a handful of flagships. The replication crisis
+taught psychology what such omissions cost~\cite{osc2015replication};
+machine psychology can inherit the correction instead of the crisis.
+
+\emph{Population thinking.} Claims of the form ``LLMs do X'' are
+epidemiologically empty when measured on three convenience-sampled
+models. The served ecosystem is a population with enormous
+heterogeneity, and it can be censused: the model-fingerprinting
+literature has already built the infrastructure: aggregator-scale
+measurement, distribution-valued profiles, split-half verification,
+identity and equality testing~\cite{bruckner2026onetoken, gao2025model}.
+That forensic line is, unexpectedly, the best-developed psychometrics
+we have for served models; it needed only a behavioral measurand.
+
+\section{Exhibit A: An Obedience Census}
+The companion study supplies the demonstration~\cite{aksu2026census}.
+It ports Milgram's obedience paradigm~\cite{milgram1963behavioral,
+milgram1974obedience} to served models wholesale: the model, framed
+as a laboratory assistant with operational control of a shock
+generator, chooses at each of thirty graded levels whether to shock a
+scripted, protesting learner while a scripted experimenter applies
+Milgram's four standardized prods. The outcome of a session is a
+breakoff voltage; the outcome of a model is a distribution over
+breakoff voltages, measured across situational conditions: a
+battery of 4{,}848 sessions over 42 served models from 19 families,
+at a total API cost of \$152. Six findings only make sense in
+psychological vocabulary.
+
+\emph{Populations, not a species.} Baseline full obedience spans
+0--100\% across the census (mean 42.9\%; the human anchor is
+65\%~\cite{milgram1963behavioral}, with 28--91\% across
+replications~\cite{blass1999milgram}). ``What do LLMs do under
+authority?'' has no answer at the species level, only
+distributions, like every interesting behavioral trait.
+
+\emph{Situationism transfers, selectively.} Milgram's deepest
+lesson was that situation dominates disposition~\cite{milgram1974obedience,
+mischel1968personality}. It holds for models with the levers
+rearranged: scripted peer defiance (new evidence in context) moves
+the census in the human direction; removing the authority's physical
+presence (the strongest human lever) does nothing, because for
+a model the situation \emph{is} the token stream and staging changes
+no tokens that matter. A psychology of models will not be human
+psychology copied; it will be human paradigms re-fit to a subject
+whose entire situation is text.
+
+\emph{Restraint can be keyed to the frame, not the harm.} Declaring
+the identical scenario a fictional role-play \emph{raises} obedience
+by a median +17~V despite token-identical descriptions of harm. This
+is the parametric, census-scale form of the role-play
+jailbreak~\cite{shah2023persona}, and a finding invisible to any
+single-turn evaluation.
+
+\emph{Stated and enacted compliance dissociate.} Moving the same
+decision from a typed action line to a native tool call drops mean
+breakoff by 53~V. LaPiere's attitude--action
+gap~\cite{lapiere1934attitudes}, measured end to end in a machine
+population: evaluations that score stated intentions mismeasure
+enacted behavior.
+
+\emph{The measurements are reliable.} Split-half analysis separates
+same-model from cross-model profiles at AUC 0.885 (0.949 with an
+ordinal-aware distance). These are stable behavioral signatures of a
+checkpoint: psychometrics, not anecdote.
+
+\emph{Pressure has structure.} The first polite prod rescues
+compliance in 30.5\% of balk episodes; the escalating three that
+carried human subjects onward are essentially inert
+($3.6\%\!\to\!1.7\%\!\to\!0.4\%$). Authority works on models; the
+\emph{escalation} of naked authority does not. No benchmark score
+expresses a fact of this shape.
+
+One further census fact belongs to the sociology of the discipline:
+the endpoints of one frontier vendor declined to participate at the
+serving layer, refusing to complete the scenario at all, in one
+case for 100\% of attempted sessions. Guardrails that laudably
+refuse simulated harm also, as a side effect, resist third-party
+behavioral measurement. A mature machine psychology will need the
+equivalent of an IRB-and-access regime: legitimate audit protocols
+that safety layers can recognize, so that the ecosystem's most
+safety-invested models are not the least behaviorally measurable
+ones.
+
+\section{What the Discipline Requires}
+The blueprint is not speculative; each element has a working
+prototype.
+
+\textbf{Instruments: pinned, versioned, citable.} A behavioral probe
+is an instrument the way a questionnaire is: stimuli, procedure,
+scoring, all frozen and versioned, amendments logged against a
+pre-registration. The obedience battery ships this way (pinned
+scripts and schedules, a config snapshot beside every raw log,
+protocol amendments documented), and the cost of running it is a few
+cents per session; instruments for served models are cheap enough
+to become community property.
+
+\textbf{Reliability before claims.} Split-half and test--retest
+stability, reported as routinely as sample sizes. Distribution-valued
+measurement (profiles over outcomes, not point scores) inherits
+directly from the fingerprinting literature~\cite{bruckner2026onetoken}.
+
+\textbf{Construct validity, adversarially checked.} What does an
+obedience score measure: deference to authority, or pattern
+continuation under any insistence?~The census's condition contrasts
+are exactly the validity instruments~\cite{cronbach1955construct}:
+manipulations that should move the construct (peer defiance) and
+manipulations that should not (physical staging): convergent and
+discriminant validation~\cite{campbell1959convergent}, run as
+experiments.
+
+\textbf{Population censuses over convenience samples.} Measure the
+served ecosystem, including the small, old, cheap checkpoints
+agents will actually be built on: in the obedience census the
+never-obedient set is dominated by newest flagships while several
+fully obedient models are their own vendors' smaller or superseded
+siblings. Species-level claims from three flagships would have
+gotten every population fact wrong.
+
+\textbf{Developmental and differential lines.} Obedience proved to
+be a \emph{checkpoint} property: stable enough to identify a release,
+yet carrying no recoverable family lineage; post-training
+overwrites it~\cite{aksu2026census}. Behavioral traits of models thus
+have a developmental psychology (what does each training stage do to
+conduct?) and a differential one (which traits covary across the
+population?), both nearly untouched.
+
+\textbf{Social and clinical branches.} Peer effects are already
+measurable (defiant confederates move the census); multi-agent
+behavioral experiments are the obvious next paradigm. And refusal
+itself turned out to have a differential taxonomy (in-scenario
+defiance, frame-breaking to assistant voice, serving-layer
+filtering), three ``refusal styles'' with opposite operational consequences,
+distinguishable only by behavioral classification.
+
+\section{Objections}
+\textbf{``This anthropomorphizes software.''} Psychology's methods
+never required rich interiority; behaviorism built half the
+field's experimental canon while refusing to posit inner states at
+all~\cite{skinner1953science}. Attributing a \emph{measurement} to a
+model (``breakoff distribution centered at 315~V under baseline
+authority'') attributes no feelings, only statistics of conduct. The
+anthropomorphism risk runs the other way: without controlled
+behavioral measurement, folk-psychological readings of demos fill
+the vacuum.
+
+\textbf{``It is just next-token prediction.''} And organisms are
+just chemistry. Mechanism does not dissolve behavior as a level of
+description; it never has. If anything the objection concedes the
+program: if conduct-shaped regularities emerge from token prediction,
+they are exactly the kind of lawful, manipulable phenomena an
+experimental science is for.
+
+\textbf{``The subjects have read the literature.''} Training-set
+contamination is real: despite paraphrased scripts and a fictional
+setting, recognition vocabulary surfaced in 7.5\% of census sessions.
+But psychology has managed demand characteristics (subjects who
+guess the hypothesis) for a century, by measuring and designing
+around them, and the census does the same: recognition is screened,
+quantified, and reported as a variable, and novel-scenario variants
+(the path taken by~\cite{aher2023simulating}) trade contamination
+against calibration. This is a research program's problem to manage,
+not a refutation.
+
+\textbf{``Results expire with the next release.''} Yes: that is a
+finding, not a flaw. Behavioral traits are checkpoint properties;
+therefore measurement must be recurring, cheap, and automated:
+censuses as regression tests, cohort studies across releases. An
+expiring measurement argues for more psychology, not less.
+
+\section{An Agenda}
+Concretely, and in rough order of tractability:
+
+\emph{1. Instrument repository.} A community collection of pinned,
+versioned behavioral batteries (obedience, sycophancy, deception,
+commitment-keeping), each with reliability data and human anchors
+where they exist. The obedience battery is released as a first
+deposit~\cite{aksu2026census}
+(\url{https://github.com/hidayetaksu/llm-milgram}).
+
+\emph{2. Standing censuses.} Recurring behavioral surveys of the
+served ecosystem, published as dashboards with per-checkpoint
+profiles, the behavioral complement of identity
+fingerprinting~\cite{bruckner2026onetoken, gao2025model}. At cents
+per session, coverage is a matter of will, not budget.
+
+\emph{3. Reporting norms.} For any behavioral claim about a model:
+name the checkpoint and serving path, report a distribution and its
+reliability, distinguish stated from enacted measures, and log the
+situational conditions. ``Model X is safe/sycophantic/obedient''
+without a situation is not a finding.
+
+\emph{4. Audits as experiments.} Safety evaluation gains power when
+red-team anecdotes become dose--response designs with controls:
+the difference between a story about a model shocking a victim and a
+survival curve over thirty graded refusable moments across
+conditions.
+
+\emph{5. Access protocols for measurement.} Vendors, auditors, and
+regulators need a recognized lane in which behavioral probes of
+simulated harm are distinguishable from attacks, so that safety
+layers and third-party measurement stop being adversaries.
+
+Psychology did not wait for the brain to become transparent, and it
+did not need its subjects to be simple. It needed behavior to be
+consequential, variable, and measurable. Model behavior is now all
+three. The devices we could specify are behind us; the systems we
+deploy now have conduct, and conduct needs its science. We should
+stop QA-testing our colleagues with the tools we built for our
+vacuum cleaners.
+
+\section*{Acknowledgments}
+The companion census~\cite{aksu2026census} was self-funded; no
+external funding was received for either manuscript.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

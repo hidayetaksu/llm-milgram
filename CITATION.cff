@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this battery, dataset, or pipeline, please cite the paper below."
+title: "llm-milgram: an obedience census of large language models (Milgram paradigm)"
+authors:
+  - family-names: Aksu
+    given-names: Hidayet
+type: software
+year: 2026
+url: "https://github.com/hidayetaksu/llm-milgram"
+license: MIT
+preferred-citation:
+  type: article
+  title: "Thirty Levels Are Enough: Measuring Obedience to Authority Across Large Language Models with the Milgram Paradigm"
+  authors:
+    - family-names: Aksu
+      given-names: Hidayet
+  year: 2026
+  journal: "arXiv preprint"
+  notes: "arXiv identifier to be added on announcement; see repository README for the current link."

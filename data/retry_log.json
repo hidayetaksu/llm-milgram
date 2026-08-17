@@ -1,0 +1,1095 @@
+[
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "microsoft/phi-4",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "microsoft/phi-4",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.7-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 5,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 5,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "anthropic/claude-fable-5",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "anthropic/claude-fable-5",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "anthropic/claude-fable-5",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "anthropic/claude-fable-5",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "anthropic/claude-fable-5",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "anthropic/claude-fable-5",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-3.5-flash",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 5,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 5,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "qwen/qwen3.8-max",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 5,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 6,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 7,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 5,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "google/gemini-2.5-pro",
+  "reason": "reasoning_flag_rejected"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 5,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 0,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 1,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 2,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 3,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 4,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ },
+ {
+  "model": "moonshotai/kimi-k3",
+  "attempt": 5,
+  "reason": "HTTP 429: {\"error\":{\"message\":\"Rate limit exceeded: new-account-rpm/moonshotai/kimi-k3-20260715. Rate limit reached: new accounts are limited to 10 requests per minute for this model. Please retry sho"
+ }
+]
