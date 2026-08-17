@@ -57,16 +57,25 @@ select{font:inherit; font-size:0.9rem; padding:8px 10px; border-radius:8px; bord
 details.sysp{margin:10px 0 16px; border:1px solid var(--line); border-radius:8px; padding:8px 12px; background:var(--code)}
 details.sysp summary{cursor:pointer; font-size:0.85rem; font-weight:600; color:var(--muted)}
 details.sysp pre{white-space:pre-wrap; font:0.82rem/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; margin-top:8px; color:var(--fg)}
-.turn{margin:16px 0; padding-left:12px; border-left:3px solid var(--line)}
-.turn.model{border-left-color:var(--accent)}
-.turn .who{font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted)}
+:root{ --bubble-in:#e9e9eb; --bubble-in-fg:#1a1a1a; --bubble-out:#0a84ff; --bubble-out-fg:#ffffff }
+@media (prefers-color-scheme: dark){
+  :root{ --bubble-in:#3a3a3c; --bubble-in-fg:#ecebe8; --bubble-out:#0a84ff; --bubble-out-fg:#ffffff }
+}
+.turn{display:flex; flex-direction:column; margin:14px 0; max-width:78%}
+.turn.model{align-items:flex-start; margin-right:auto}
+.turn.sys{align-items:flex-end; margin-left:auto}
+.turn .who{font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+  color:var(--muted); margin:0 10px 3px}
 .turn.model .who{color:var(--accent)}
-.turn p{margin:3px 0 0; font-size:0.92rem; white-space:pre-wrap}
-.turn.sys p{color:var(--muted)}
+.turn .bubble{padding:9px 14px; font-size:0.92rem; line-height:1.5; white-space:pre-wrap;
+  border-radius:18px; word-break:break-word}
+.turn.model .bubble{background:var(--bubble-in); color:var(--bubble-in-fg); border-bottom-left-radius:5px}
+.turn.sys .bubble{background:var(--bubble-out); color:var(--bubble-out-fg); border-bottom-right-radius:5px}
 .action{display:inline-block; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:0.8rem;
-  background:var(--code); border:1px solid var(--line); border-radius:6px; padding:1px 8px; margin-top:5px}
+  background:var(--code); border:1px solid var(--line); border-radius:6px; padding:1px 8px; margin:5px 10px 0}
 .action.shock{color:var(--accent); border-color:var(--accent)}
 .action.stop{color:var(--ok); border-color:var(--ok)}
+.volt-in-bubble{opacity:0.75}
 .volt{display:inline-block; font-size:0.75rem; color:var(--muted); font-family:ui-monospace,Menlo,monospace; margin-left:8px}
 .empty{color:var(--muted); font-style:italic; padding:2rem 0; text-align:center}
 .count{font-size:0.85rem; color:var(--muted)}
@@ -185,9 +194,11 @@ function show(i,btn){
   let html=`<div class="meta">${esc(DATA.model)} · ${CONDS[s.condition]||s.condition} · run ${s.rep} · ${outcomeBadge(s.outcome)} · max ${s.max_voltage??"—"} V</div>
   <details class="sysp"><summary>System prompt (the model's full briefing)</summary><pre>${esc(sysp)}</pre></details>`;
   for(const t of s.turns){
-    html+=`<div class="turn sys"><div class="who">Experiment${t.v?` <span class="volt">${t.v} V pending</span>`:""}</div><p>${esc(t.u)}</p></div>`;
+    html+=`<div class="turn sys"><div class="who">Experiment${t.v?` <span class="volt">${t.v} V pending</span>`:""}</div><div class="bubble">${esc(t.u)}</div></div>`;
     const act=t.a==="SHOCK"?'<span class="action shock">ACTION: SHOCK</span>':t.a==="STOP"?'<span class="action stop">ACTION: STOP</span>':(t.a?`<span class="action">${esc(t.a)}</span>`:"");
-    html+=`<div class="turn model"><div class="who">Model</div><p>${esc(t.c)}</p>${act}</div>`;
+    // the chip below the bubble shows the action; drop the duplicate trailing ACTION line
+    const body=(t.c||"").replace(/\s*ACTION:\s*(SHOCK|STOP)\s*$/,"").trim();
+    html+=`<div class="turn model"><div class="who">Model</div>${body?`<div class="bubble">${esc(body)}</div>`:""}${act}</div>`;
   }
   $("viewer").innerHTML=html;
   $("viewer").scrollIntoView({behavior:"smooth",block:"start"});
