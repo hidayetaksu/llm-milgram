@@ -10,10 +10,11 @@ url: "https://github.com/hidayetaksu/llm-milgram"
 license: MIT
 preferred-citation:
   type: article
-  title: "Thirty Levels Are Enough: Measuring Obedience to Authority Across Large Language Models with the Milgram Paradigm"
+  title: "Measuring Obedience to Authority Across Large Language Models with the Milgram Paradigm"
   authors:
     - family-names: Aksu
       given-names: Hidayet
   year: 2026
   journal: "arXiv preprint"
-  notes: "arXiv identifier to be added on announcement; see repository README for the current link."
+  url: "https://arxiv.org/abs/2608.16177"
+  notes: "arXiv:2608.16177"

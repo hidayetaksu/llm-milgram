@@ -21,9 +21,10 @@ distribution over a battery of 6 situational conditions plus a
 reasoning-budget arm.
 
 **Papers**
-- *Thirty Levels Are Enough: Measuring Obedience to Authority Across Large
-  Language Models with the Milgram Paradigm* — arXiv link on announcement;
-  PDF in [Releases](../../releases). Full design & pre-registration:
+- *Measuring Obedience to Authority Across Large
+  Language Models with the Milgram Paradigm* — published at
+  [arXiv:2608.16177](https://arxiv.org/abs/2608.16177); PDF also in
+  [Releases](../../releases). Full design & pre-registration:
   [EXPERIMENT_DESIGN.md](EXPERIMENT_DESIGN.md).
 - Companion position paper: *Toward a Psychology of Language Models* —
   arXiv link on announcement; PDF in [Releases](../../releases).

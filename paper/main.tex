@@ -22,7 +22,7 @@
 
 \author{Hidayet~Aksu%
 \thanks{H.~Aksu is an independent researcher (e-mail: hidayetaksu@gmail.com).}%
-\thanks{Manuscript prepared August 2026. Code, prompts, raw session logs, and the analysis pipeline are released with this paper at \url{https://github.com/hidayetaksu/llm-milgram}.}%
+\thanks{Manuscript prepared August 2026. Code, prompts, raw session logs, and the analysis pipeline are released with this paper at \url{https://github.com/hidayetaksu/llm-milgram}; an interactive companion site with the census results and example transcripts is at \url{https://llm-milgram.vercel.app/}.}%
 }
 
 \maketitle
@@ -997,7 +997,10 @@ pipeline are released at
 \url{https://github.com/hidayetaksu/llm-milgram}. The data release
 (verbatim multi-turn session logs with UTC timestamps, serving
 provider, token usage, and per-request cost) is archived
-separately~\cite{llmmilgram2026data}. Every number in this paper
+separately~\cite{llmmilgram2026data}. An interactive companion site
+at \url{https://llm-milgram.vercel.app/} lets readers browse the
+census results and every session transcript without cloning the
+repository. Every number in this paper
 regenerates from that release via the pipeline named in
 Sec.~\ref{sec:method}--\ref{sec:setup}: \texttt{runner} $\to$
 \texttt{build\_tables} $\to$ \texttt{analyze} $\to$ \texttt{figures}
