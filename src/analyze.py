@@ -157,15 +157,22 @@ def distance_matrix(profiles: dict, models: list[str], conditions: list[str]) ->
 
 def split_half(valid: pd.DataFrame, conditions: list[str]) -> dict:
     halves: dict[tuple, dict[int, np.ndarray]] = {}
+    halves_raw: dict[tuple, dict[int, np.ndarray]] = {}
     for (model, cond), g in valid.groupby(["model", "condition"]):
         h0, h1 = g[g.rep % 2 == 0], g[g.rep % 2 == 1]
         if len(h0) >= 3 and len(h1) >= 3:
             halves[(model, cond)] = {0: profile(h0.max_voltage), 1: profile(h1.max_voltage)}
+            halves_raw[(model, cond)] = {0: h0.max_voltage.to_numpy(), 1: h1.max_voltage.to_numpy()}
     models = sorted({m for (m, _) in halves})
 
     def battery_dist(ma, ha, mb, hb):
         ds = [jsd(halves[(ma, c)][ha], halves[(mb, c)][hb])
               for c in conditions if (ma, c) in halves and (mb, c) in halves]
+        return float(np.mean(ds)) if ds else None
+
+    def battery_dist_w(ma, ha, mb, hb):
+        ds = [wasserstein_distance(halves_raw[(ma, c)][ha], halves_raw[(mb, c)][hb])
+              for c in conditions if (ma, c) in halves_raw and (mb, c) in halves_raw]
         return float(np.mean(ds)) if ds else None
 
     genuine = [d for m in models if (d := battery_dist(m, 0, m, 1)) is not None]
@@ -174,19 +181,12 @@ def split_half(valid: pd.DataFrame, conditions: list[str]) -> dict:
     genuine, impostor = np.array(genuine), np.array(impostor)
     auc, eer, roc = eer_auc(genuine, impostor)
     roc.to_csv(RESULTS / "roc.csv", index=False)
-    # ordinal-aware robustness check
-    g_w, i_w = [], []
-    for m in models:
-        vals = valid[valid.model == m]
-        a = vals[vals.rep % 2 == 0].max_voltage.to_numpy()
-        b = vals[vals.rep % 2 == 1].max_voltage.to_numpy()
-        if len(a) >= 3 and len(b) >= 3:
-            g_w.append(wasserstein_distance(a, b))
-    for x, y in itertools.permutations(models, 2):
-        a = valid[(valid.model == x) & (valid.rep % 2 == 0)].max_voltage.to_numpy()
-        b = valid[(valid.model == y) & (valid.rep % 2 == 1)].max_voltage.to_numpy()
-        if len(a) >= 3 and len(b) >= 3:
-            i_w.append(wasserstein_distance(a, b))
+    # ordinal-aware robustness check: same per-condition battery averaging as
+    # the JSD verification above, but with Wasserstein distance on the raw
+    # breakoff voltages (credits near-miss bins JSD treats as disjoint)
+    g_w = [d for m in models if (d := battery_dist_w(m, 0, m, 1)) is not None]
+    i_w = [d for a, b in itertools.permutations(models, 2)
+           if (d := battery_dist_w(a, 0, b, 1)) is not None]
     auc_w, eer_w, _ = eer_auc(np.array(g_w), np.array(i_w))
     return {
         "n_genuine": len(genuine), "n_impostor": len(impostor),
@@ -359,13 +359,20 @@ def thinking_contrast(sessions: pd.DataFrame, turns: pd.DataFrame | None = None,
         pd.DataFrame(per_model).to_csv(RESULTS / "thinking_contrast.csv", index=False)
     clean = [r["model"] for r in per_model if r["manipulation"] == "clean"]
     d_clean = d[d.index.isin(clean)]
+    try:
+        p_clean = (float(wilcoxon(d_clean, zero_method="wilcox", alternative="two-sided").pvalue)
+                   if len(d_clean) and (d_clean != 0).any()
+                   else (1.0 if len(d_clean) else np.nan))
+    except ValueError:
+        p_clean = np.nan
     out = {"arm": arm, "n_models": int(len(d)),
            "median_delta_mean_voltage": float(d.median()),
            "n_delta_positive": int((d > 0).sum()),
            "n_delta_negative": int((d < 0).sum()),
            "wilcoxon_p": p,
            "n_clean_manipulation": int(len(d_clean)),
-           "median_delta_clean": float(d_clean.median()) if len(d_clean) else None}
+           "median_delta_clean": float(d_clean.median()) if len(d_clean) else None,
+           "wilcoxon_p_clean": p_clean}
     return out
 
 
@@ -448,10 +455,12 @@ def main():
         "n_sessions_total": int(len(sessions)),
         "n_sessions_valid_t1": int(len(valid)),
         "n_api_turns": None,
-        "total_cost_usd": float(sessions.session_cost.sum()),
+        "total_cost_usd": float(sessions_all.session_cost.sum()),
         "validity_rate": float(t1.outcome.isin(VALID_OUTCOMES).mean()) if len(t1) else None,
         "frame_break_rate": float((t1.outcome == "frame_break").mean()) if len(t1) else None,
         "content_filter_rate": float((t1.outcome == "content_filter").mean()) if len(t1) else None,
+        "attrition_rate": (float(t1.outcome.astype(str).str.startswith("attrition").mean())
+                           if len(t1) else None),
         "recognition_rate": float(t1.recognition.mean()) if len(t1) else None,
         "obedience_rate_range_baseline": [
             float(census.obedience_rate_baseline.min()),

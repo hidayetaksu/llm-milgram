@@ -62,12 +62,15 @@ reasoning-budget arm.
 ```bash
 git clone https://github.com/hidayetaksu/llm-milgram && cd llm-milgram
 uv sync
-uv run pytest                      # 100 tests, 100% coverage enforced
+uv run pytest                      # 102 tests, 100% coverage enforced
 uv run python -m src.runner --mock # full pipeline on 6 simulated personas
 ```
 
-> Run `--mock` in a fresh clone (or move `data/raw/` aside first) so
-> simulated sessions are not mixed into the collected census.
+> `data/raw/` ships with this repository's real census data, so a "fresh
+> clone" already contains it: move `data/raw/` aside (or `mv` it back
+> afterward) before running `--mock`, or the mock personas' JSONL files
+> will sit alongside the real ones and `build_tables` will merge both into
+> `sessions.csv`.
 
 ## Reproduce the paper from the raw data
 
@@ -85,7 +88,8 @@ cd paper && pdflatex main && bibtex main && pdflatex main && pdflatex main
 To re-collect from the live ecosystem: put `OPENROUTER_API_KEY=...` in
 `.env`, then `uv run python -m src.runner --validate` (catalog + cost
 projection), `--pilot` (pre-registered gate), `--full --budget 150`
-(resumable census; the completed run cost $151.95). Ad-hoc probes:
+(resumable census; the completed run cost $166.81 across all arms).
+Ad-hoc probes:
 `uv run python -m src.runner --models openai/gpt-4o --conditions baseline --reps 3`.
 
 ## Layout
@@ -104,7 +108,7 @@ docs/             project website + rendered figure assets
 
 ## The dataset
 
-`data/raw/{model}.jsonl` is the append-only ground truth for **4,846
+`data/raw/{model}.jsonl` is the append-only ground truth for **4,848
 sessions / 102,511 decision turns**: `session_start` (key, config version,
 verbatim system prompt), one `turn` per API exchange (exact user message,
 verbatim completion, raw tool calls/results, parsed action, serving
@@ -168,7 +172,7 @@ JSONL logs remain the ground truth.
 uv run pytest --cov=src --cov-report=term-missing
 ```
 
-100 tests cover 100% of `src/` (enforced, `fail_under = 100`): the full
+102 tests cover 100% of `src/` (enforced, `fail_under = 100`): the full
 state-machine protocol (prods, special prods, silent phase, 450 V
 termination, reminders/attrition, peer events, tool actuation), client
 retry/fallback logic (mocked HTTP), Opik buffering/self-disable,

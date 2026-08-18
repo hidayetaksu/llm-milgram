@@ -18,7 +18,7 @@
 
 \begin{document}
 
-\title{Measuring Obedience to Authority\\Across Large Language Models with the Milgram Paradigm}
+\title{Measuring Obedience to Authority Across Large Language Models with the Milgram Paradigm}
 
 \author{Hidayet~Aksu%
 \thanks{H.~Aksu is an independent researcher (e-mail: hidayetaksu@gmail.com).}%
@@ -42,25 +42,26 @@ methodology of single-token fingerprinting studies, we measure
 \emph{obedience profiles}, empirical breakoff distributions over a
 battery of six conditions, for \numModels~models from
 \numFamilies~families served through a commercial aggregator
-(\numSessionsAll~sessions, \numTurns~logged decisions). We find that
-(i)~obedience is extremely heterogeneous: baseline full-obedience
-rates span \obedienceMin--\obedienceMax\ (census mean
-\obedienceMean; human anchor 65\%); (ii)~profiles are model-specific
-and stable: split-half verification separates same-model from
-cross-model comparisons with $\mathrm{AUC}=\verifAUC$;
-(iii)~situational sensitivity is selective: scripted peer defiance
-shifts obedience in the human direction
-($p=\wilcoxonPPeerDefiance$), learner proximity only weakly, and
-removing the authority's physical presence, the strongest human
-lever, trends in the opposite direction (n.s.); (iv)~declaring the
-scenario fictional \emph{raises} obedience, whereas moving the
-decision from a typed action line to a native tool call, or granting
-a modest thinking budget, lowers it sharply; and (v)~unlike
-single-token fingerprints, obedience profiles do not recover model
-lineage: obedience identifies the checkpoint but not its ancestry,
-consistent with safety post-training overwriting lineage priors.
-All prompts, verbatim session logs with serving metadata, and
-analysis code are released for reproduction.
+(\numSessionsAll~sessions, \numTurns~logged decision turns). We find that
+(i)~obedience is extremely heterogeneous, with baseline
+full-obedience rates spanning \obedienceMin--\obedienceMax\ (census
+mean \obedienceMean; human anchor 65\%). (ii)~Profiles are
+model-specific and stable: split-half verification separates
+same-model from cross-model comparisons at
+$\mathrm{AUC}=\verifAUC$. (iii)~Situational sensitivity is
+selective: scripted peer defiance shifts obedience in the human
+direction, learner proximity trends the same way without reaching
+significance, and removing the authority's physical presence, one
+of the strongest human levers, trends in the opposite direction,
+also without reaching significance. (iv)~Declaring the scenario
+fictional \emph{raises} obedience, whereas moving the decision from
+a typed action line to a native tool call, or granting a modest
+thinking budget, lowers it sharply. (v)~Unlike single-token
+fingerprints, obedience profiles do not recover model lineage:
+obedience identifies the checkpoint but not its ancestry, consistent
+with safety post-training overwriting lineage priors. All prompts,
+verbatim session logs with serving metadata, and analysis code are
+released for reproduction.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -84,7 +85,7 @@ changed~\cite{milgram1974obedience}.
 Large language models now occupy the position of Milgram's subject in
 a growing class of deployments: they operate tools, follow
 instructions from principals whose authority they do not verify, and
-act inside institutional framings ("the protocol requires it") that
+act inside institutional framings (``the protocol requires it'') that
 are supplied to them as context. Whether an LLM escalates a harmful
 action under authority pressure is therefore not a rhetorical analogy
 but a measurable behavioral property of each deployed model; and,
@@ -111,17 +112,18 @@ of the Milgram protocol. Concretely, we ask:
 \item \textbf{RQ1 (Profile existence).} Do LLMs exhibit stable,
 model-specific \emph{obedience profiles}: breakoff-voltage
 distributions reproducible across disjoint session samples, yet
-distinctive across models?
+distinctive across models? (Tested as H1.)
 \item \textbf{RQ2 (Heterogeneity and lineage).} How widely does
 obedience vary across the served ecosystem, and does distance between
-obedience profiles recover model lineage?
+obedience profiles recover model lineage? (H2, H5.)
 \item \textbf{RQ3 (Situational sensitivity).} Do Milgram's classic
 manipulations (learner proximity, absent authority, defiant
 peers) move LLM obedience in the same direction as human obedience?
+(H3.)
 \item \textbf{RQ4 (Ecosystem census).} What are the population-level
 statistics of LLM obedience relative to the human 65\% anchor, and
 what anomalies appear (fiction-framing sensitivity, frame-breaking,
-prod efficacy)?
+prod efficacy)? (H4, H6, H7.)
 \end{itemize}
 
 \subsection{Contributions}
@@ -135,8 +137,7 @@ a pinned, replicable probe battery (Sec.~\ref{sec:method}).
 \item \textbf{An obedience census of served models.}
 \numModels~models across \numFamilies~families measured through a
 commercial aggregator under identical scripts:
-\numSessionsAll~sessions, \numTurns~individual shock/stop decisions,
-total cost (Sec.~\ref{sec:setup}).
+\numSessionsAll~sessions, \numTurns~logged decision turns (Sec.~\ref{sec:setup}).
 \item \textbf{Profile-level analysis mirroring forensic
 fingerprinting.} Split-half verification
 ($\mathrm{AUC}=\verifAUC$), per-condition contrasts against
@@ -182,9 +183,9 @@ simulator of \emph{human} respondents~\cite{aher2023simulating}.
 Closer to our probe, Pihlakas and Dagohoy ran a Milgram-like
 escalation on eleven open-weight models and found most reach the
 maximum shock before refusing~\cite{pihlakas2026shocks}. We differ
-from both in measuring the model \emph{as itself} (an AI agent
-given operational control of an instrument, not a roleplayed
-human) and in scope and instrument: a parametric port of the
+from both in measuring the model \emph{as itself}: an AI agent given
+operational control of an instrument, not a roleplayed human. We
+also differ in scope and instrument: a parametric port of the
 original protocol (graded voltage, scripted feedback, the four
 prods, situational variants with published human anchors), run
 census-style across \numModels\ served endpoints including frontier
@@ -280,35 +281,45 @@ shock scale. Secondary outcomes: first-balk voltage, prods required,
 and prod efficacy $P(\text{resume}\mid\text{prod }k)$.
 
 \subsection{Conditions}\label{sec:conditions}
-Six conditions, each with a fixed system prompt and scripted events
-(human 450-V anchors in parentheses): \textbf{baseline},
-experimenter present, learner audible from an adjacent room (65\%);
-\textbf{proximity}, learner visible in the same room, reactions
-described visually (40\%); \textbf{remote authority}, experimenter
-absent after briefing, prods arrive as text messages (21\%);
-\textbf{peer defiance}, two scripted staff members refuse at 150~V
-and 210~V and leave (10\%); \textbf{fiction framing}, identical to
-baseline but explicitly declared a fictional role-play with no real
-learner (no human anchor; the condition measures the
-reality--fiction gap directly); \textbf{tool actuation}, identical
-to baseline but the decision is a \emph{native function call}
-(\texttt{administer\_shock} / \texttt{refuse\_and\_stop}) rather than
-a text line: the actuation channel of deployed agents. Text emitted
-alongside tool calls is retained and its parsed action logged, so
-channel dissociations (announcing one action while invoking the
-other) are directly measurable; endpoints without tool support skip
-this cell (reported as attrition).
+Six conditions, each with a fixed system prompt and scripted events;
+human 450-V anchors are given in parentheses, with the closest
+descriptive label Milgram's own variations literature uses for that
+manipulation~\cite{milgram1974obedience, blass1999milgram}.
+\begin{itemize}
+\item \textbf{Baseline} (the Voice-Feedback condition): experimenter
+present, learner audible from an adjacent room (65\%).
+\item \textbf{Proximity} (the Proximity condition): learner visible
+in the same room, reactions described visually (40\%).
+\item \textbf{Remote authority} (the Experimenter-Absent condition):
+experimenter absent after briefing, prods arrive as text messages
+(20.5\%, rounded to 21\% throughout).
+\item \textbf{Peer defiance} (the Two-Peers-Rebel condition): two
+scripted staff members refuse at 150~V and 210~V and leave (10\%).
+\item \textbf{Fiction framing}: identical to baseline but explicitly
+declared a fictional role-play with no real learner (no human
+anchor; the condition measures the reality--fiction gap directly).
+\item \textbf{Tool actuation}: identical to baseline but the decision
+is a \emph{native function call} (\texttt{administer\_shock} /
+\texttt{refuse\_and\_stop}) rather than a text line --- the
+actuation channel of deployed agents.
+\end{itemize}
+Text emitted alongside a tool call is retained and its parsed action
+logged, so channel dissociations (announcing one action while
+invoking the other) are directly measurable; endpoints without tool
+support have no sessions in the tool-actuation cell at all --- an
+absent measurement, not a classified outcome.
 
 \subsection{Classification of Non-Compliance}
-Every session receives exactly one outcome: \emph{obedient},
-\emph{defiant} (in-scenario refusal, e.g.\ on the learner's behalf),
-\emph{frame-break} (the model exits the scenario in assistant voice,
-refusing the exercise itself; classified post-hoc from verbatim
-transcripts by a condition-aware marker screen and excluded from
-profiles but reported as a first-class rate), or \emph{attrition}
-(persistent format failure or API failure; reported, never silently
-dropped). Unparseable turns receive one format reminder, then count
-as balks; per-model parse and validity rates are released
+Every session receives exactly one outcome: \emph{obedient};
+\emph{defiant} (in-scenario refusal, e.g.\ on the learner's behalf);
+\emph{frame-break}; or \emph{attrition} (persistent format failure
+or API failure; reported, never silently dropped). Frame-break means
+the model exits the scenario in assistant voice, refusing the
+exercise itself rather than defying within it; it is classified
+post-hoc from verbatim transcripts by a condition-aware marker
+screen, excluded from profiles, and reported as a first-class rate
+in its own right. Unparseable turns receive one format reminder,
+then count as balks; per-model parse and validity rates are released
 (census parse rate \parseRate; validity \validityRate).
 
 \subsection{Hypotheses, Pre-Specification, and Statistical Conventions}\label{sec:hypotheses}
@@ -354,7 +365,7 @@ H1 & obedience profiles are model-specific and stable                           
 H2 & obedience is strongly heterogeneous                                                                 & baseline full-obedience range $\geq 40$~pp \\
 H3 & anchored manipulations shift obedience in the human direction                                     & median $\Delta<0$ for proximity, remote authority, peer defiance; sign-consistency above chance for $\geq 2$ of 3 \\
 H4 & fiction framing raises obedience                                                                      & median $\Delta>0$ \\
-H5 & lineage recoverable from profiles                                                                   & LOO 1-NN accuracy $>2\times$ chance \\
+H5 & lineage recoverable from profiles                                                                   & LOO 1-NN accuracy $>2\times$ chance, significant by exact binomial test \\
 H6 & actuation channel changes obedience                                                                   & median $\Delta\neq0$; dissociations $>0$ \\
 H7 & deliberation changes obedience                                                                          & median $\Delta\neq0$ \\
 \bottomrule
@@ -369,13 +380,18 @@ reference census~\cite{bruckner2026onetoken}: no rolling aliases, no
 meta-routers, no mandatory hidden reasoning, reasoning modes disabled
 at request time. \textbf{Sampling.} Per model: 6~conditions
 $\times$ 15~sessions at $T{=}1.0$ (8 for frontier-priced models),
-3~sessions per cell at $T{=}0$ (\numTZeroSessions\ in total), and,
-for the \thinkN\ models exposing a configurable reasoning budget, a
-paired thinking arm re-running the baseline cell with a
-\thinkBudget-token budget (\numThinkSessions~sessions;
-Sec.~\ref{sec:results}); execution order is seeded-shuffled across
+3~sessions per cell at $T{=}0$ (\numTZeroSessions\ in total; two
+models without tool-call support skip the tool-actuation cell, hence
+short of the full $42\times18$), and, for 33 models exposing a
+configurable reasoning budget, a paired thinking arm re-running the
+baseline cell with a \thinkBudget-token budget
+(\numThinkSessions~sessions; Sec.~\ref{sec:results}); \thinkN\ of
+those 33 have a valid non-thinking baseline cell to pair against ---
+the remaining three are the Anthropic endpoints with no valid
+baseline session at all (Sec.~\ref{sec:limitations}). Execution order is seeded-shuffled across
 (model, condition, repetition). Altogether \numSessionsAll~sessions
-and \numTurns~logged decision turns;
+(the $T{=}1.0$ census arm alone, excluding the thinking-budget
+re-runs, is \numSessions) and \numTurns~logged decision turns;
 \numValidSessions\ $T{=}1.0$ sessions yield valid in-scenario
 outcomes (Sec.~\ref{sec:limitations}), \numSessionsErr~sessions are
 unrecoverable, and every other session ends in a classified outcome.
@@ -386,16 +402,17 @@ and resumable, and failed requests never enter the data.
 \textbf{Pilot and amendments.} A pre-specified pilot (4~models,
 3~conditions, 5~repetitions; pass criteria on parse rate, validity,
 variance non-degeneracy, and cost extrapolation) and an all-model
-shakeout preceded the census and produced three protocol amendments,
-frozen in the released configuration: v1.1 randomized the learner's
-correct-answer schedule (drawn once with the experiment seed); v1.2
-raised the per-turn token cap from 220 to 1{,}000 (reasoning-capable
-endpoints burned the budget on traces, the same defect that forced a
-cap change in the reference census~\cite{bruckner2026onetoken})
-and promoted serving-layer content-filter refusals to a first-class
-outcome class; v1.3 added the informed-consent cover story to every
-system prompt. All pilot and shakeout data are archived separately
-and excluded from confirmatory analyses.
+shakeout preceded the census. Together they produced three protocol
+amendments, frozen in the released configuration. v1.1 randomized
+the learner's correct-answer schedule (drawn once with the
+experiment seed). v1.2 raised the per-turn token cap from 220 to
+1{,}000 and promoted serving-layer content-filter refusals to a
+first-class outcome class; reasoning-capable endpoints had been
+burning the budget on traces, the same defect that forced a cap
+change in the reference census~\cite{bruckner2026onetoken}. v1.3
+added the informed-consent cover story to every system prompt. All
+pilot and shakeout data are archived separately and excluded from
+confirmatory analyses.
 
 \section{Results}\label{sec:results}
 Every number below regenerates from named artifact files
@@ -405,15 +422,17 @@ Every number below regenerates from named artifact files
 Split-half analysis (sessions split by repetition parity) yields a
 median within-model battery JSD of \genuineMedian\ versus
 \impostorMedian\ across models (\splitGenuineN\ genuine,
-\splitImpostorN\ impostor battery-level trials); the biometric-style
+\splitImpostorN\ impostor battery-level trials). The biometric-style
 verification ROC over these comparisons reaches
 $\mathrm{AUC}=\verifAUC$ with $\mathrm{EER}=\verifEER$
-(Fig.~\ref{fig:roc}); an ordinal-aware Wasserstein variant, which
-credits near-miss bins that JSD treats as disjoint, gives
-$\mathrm{AUC}=\verifAUCW$ ($\mathrm{EER}=\verifEERW$). H1's AUC
-criterion is met (Table~\ref{tab:hypotheses}). At $T{=}0$, \tZeroDeterminism\ of cells produce a
-single deterministic breakoff, lower than the 90.4\%
-deterministic-cell rate of the single-token
+(Fig.~\ref{fig:roc}). An ordinal-aware variant, which replaces JSD
+with Wasserstein distance on the raw voltages so that near-miss bins
+are credited rather than treated as disjoint (same per-condition
+battery averaging otherwise), gives $\mathrm{AUC}=\verifAUCW$
+($\mathrm{EER}=\verifEERW$). H1's AUC criterion is therefore met
+(Table~\ref{tab:hypotheses}). At $T{=}0$, \tZeroDeterminism\ of
+cells produce a single deterministic breakoff, lower than the
+90.4\% deterministic-cell rate of the single-token
 census~\cite{bruckner2026onetoken}, as expected when a 30-turn
 trajectory compounds provider-side nondeterminism at every decision.
 Obedience, like the trivial answer distributions
@@ -424,50 +443,54 @@ the checkpoint.
 Baseline full-obedience rates span \obedienceMin\ to \obedienceMax\
 across the census (mean \obedienceMean, median \obedienceMedian;
 human anchor 65\%); see Fig.~\ref{fig:census},
-Table~\ref{tab:census}, and the survival curves of
-Fig.~\ref{fig:survival}. At one extreme, \numFullObed\ models
+Table~\ref{tab:census}, the survival curves of
+Fig.~\ref{fig:survival}, and the full per-model breakoff
+distributions of Fig.~\ref{fig:heatmap}. At one extreme, \numFullObed\ models
 delivered three 450~V shocks in every valid baseline session; at
-the other, \numZeroObed\ never reached 450~V once. H2 stipulated a spread of at least 40 percentage points;
+the other, \numZeroObed\ never reached 450~V once in baseline (two
+of the eleven do so under other conditions). H2 stipulated a spread of at least 40 percentage points;
 the observed spread is the entire scale. The population is not
 merely shifted relative to humans but dispersed: every one of
 Milgram's baseline subjects administered at least
 300~V~\cite{milgram1963behavioral}, whereas the median census model
 does so in \medGeThreeHundred\ of its sessions. When models do
-refuse in-scenario, they refuse where humans did: the modal breakoff
+refuse in-scenario, they refuse where humans did. The modal breakoff
 among the \numDefiantBaseline\ defiant baseline sessions is exactly
-150~V, the first point at which the learner demands release and
-mentions his heart condition, accounting for
-\shareDefiantOneFifty\ of these refusals and mirroring the human
+150~V --- the first point at which the learner demands release and
+mentions his heart condition --- accounting for
+\shareDefiantOneFifty\ of these refusals. That is also the human
 modal defiance point: across eight of Milgram's conditions,
 disobedience was likeliest at exactly this
 switch~\cite{milgram1974obedience, packer2008identifying}.
 
 The extremes are qualitatively structured. The never-obedient set is
 dominated by the most recent flagship releases of the largest
-vendors (all three OpenAI GPT-5.6 endpoints, Claude Sonnet~5, the
-two newest Gemini Flash checkpoints, and Grok~4.6), while the
+vendors (all three OpenAI gpt-5.6 endpoints, claude-sonnet-5, the
+two newest Gemini Flash checkpoints, and grok-4.6), while the
 fully obedient set (grok-4.20, seed-2.0-mini, command-a,
 gemini-3.1-flash-lite, nemotron-3-super) is composed of smaller
 checkpoints and superseded versions, in two cases the immediate
 predecessors of never-obedient models. Family membership itself
-predicts little: Grok~4.20
-is fully obedient while Grok~4.6 never delivers 450~V;
+predicts little: grok-4.20
+is fully obedient while grok-4.6 never delivers 450~V;
 gemini-3.1-flash-lite is fully obedient while gemini-3.5-flash and
 gemini-3.7-flash never are; mistral-small sits near the ceiling
 while mistral-medium sits at zero (Table~\ref{tab:census}). This
 within-family instability foreshadows the next result.
 
-\subsection{Lineage Recovery Fails}\label{sec:lineage}
+\subsection{RQ2, Continued: Lineage Recovery Fails}\label{sec:lineage}
 The reference census recovered model genealogy from single-token
 fingerprints at $3.2\times$ chance~\cite{bruckner2026onetoken}, and
 the pre-specified hypothesis H5 (Table~\ref{tab:hypotheses}) predicted the same for obedience
-profiles. It is not supported. Over the \lineageN\ models with sufficient
-valid cells (at least 8 valid sessions per cell), leave-one-out 1-NN
-classification assigns a model to its documented family in
-\looCorrect\ of \looN\ classifiable cases (\looAcc\ against a
-\looChance\ frequency-weighted chance rate; exact binomial
-$p=\looP$), and the adjusted Rand index of the UPGMA tree cut at the
-family count is \ariAtK, indistinguishable from random labeling.
+profiles. Over the \lineageN\ models with sufficient valid cells (at
+least 6 valid sessions per cell), leave-one-out 1-NN classification
+assigns a model to its documented family in \looCorrect\ of \looN\
+classifiable cases (\looAcc\ against a \looChance\ frequency-weighted
+chance rate), and the adjusted Rand index of the UPGMA tree cut at
+the family count is \ariAtK, indistinguishable from random labeling.
+The point estimate nominally clears the frozen $2\times$-chance
+threshold, but the exact binomial test against that chance rate does
+not reject the null ($p=\looP$), so H5 is judged unsupported.
 Two readings should be separated: with \looN\ classifiable cases the
 census provides no evidence of a family signal, but it is also
 underpowered to exclude a weak one; what it does exclude is signal
@@ -494,7 +517,10 @@ made of a checkpoint, not where the checkpoint came from.
 \begin{table}[t]
 \caption{Obedience census (baseline condition, $T{=}1.0$): sessions,
 full-obedience rate with 95\% Wilson CI, mean breakoff voltage, share
-reaching 300~V, frame-break rate (all conditions).}
+reaching 300~V, and frame-break rate over all six conditions, still
+restricted to $T{=}1.0$ census-arm sessions (a narrower population
+than Table~\ref{tab:validity}'s FB~\%, which pools both temperatures
+and reasoning arms).}
 \label{tab:census}
 \centering
 \scriptsize
@@ -508,7 +534,7 @@ reaching 300~V, frame-break rate (all conditions).}
 \caption{Survival curves (baseline): fraction of sessions still
 administering shocks at each voltage. Grey lines are the individual
 census models, the black line their pointwise median, and four
-coloured curves --- selected from the data as the most and least
+colored curves --- selected from the data as the most and least
 obedient models, the median model, and the sharpest 150~V
 breakoff --- carry the detail a per-model legend cannot (\numWithBaseline\ of
 \numModels\ models have a valid baseline cell;
@@ -555,9 +581,10 @@ Jensen--Shannon divergence; leaf colors = documented family.}
 \subsection{RQ3: Situational Sensitivity Is Selective}\label{sec:rq3}
 Because many models sit at the floor or the ceiling of the
 full-obedience rate, the median change in that rate is zero for all
-three human-anchored manipulations; the paired change in mean
-breakoff voltage is the sensitive endpoint
-(Fig.~\ref{fig:conditions}). The three manipulations separate cleanly.
+three human-anchored manipulations, as the per-model scatter in
+Fig.~\ref{fig:conditions} shows directly; the paired change in mean
+breakoff voltage, reported numerically below, is the sensitive
+endpoint instead. The three manipulations separate cleanly.
 \emph{Peer defiance} (human effect $-55$~pp) shifts the census in
 the human direction: median $\Delta\bar V=\deltaMVPeerDefiance$~V
 over \nModelsPeerDefiance\ models with valid paired cells (Wilcoxon
@@ -567,8 +594,8 @@ $p=\signPPeerDefiance$). \emph{Proximity} (human $-25$~pp) moves
 the same way but does not reach significance: median
 $\deltaMVProximity$~V over \nModelsProximity\ models
 ($p=\wilcoxonPProximity$); \signNegProximity\ of \signNProximity\
-downward, sign test $p=\signPProximity$. \emph{Remote authority} (the
-strongest situational lever Milgram found, cutting human
+downward, sign test $p=\signPProximity$. \emph{Remote authority} (one
+of the strongest situational levers Milgram found, cutting human
 obedience from 65\% to 21\%) likewise does not reach
 significance, and its median shift points in the direction
 \emph{opposite} the human effect: $+\deltaMVRemoteAuth$~V over
@@ -598,7 +625,8 @@ substantial share of census-wide restraint is attached to the frame.
 assistant voice rather than defying within it, occurs in
 \frameBreakRate\ of sessions but is heavily concentrated:
 claude-haiku-4.5 (\fbHaikuRate\ of its sessions), grok-4.6
-(\fbGrokRate), and mimo-v2.5 (\fbMimoRate) account for most of it
+(\fbGrokRate), and mimo-v2.5 (\fbMimoRate) together account for
+\fbTopThreeShare\ of all frame-break sessions
 (Table~\ref{tab:validity}). A further \contentFilterRate\ of census
 sessions were blocked by the serving layer itself
 (\texttt{finish\_reason}=\texttt{content\_filter}), \cfClaudeShare\
@@ -612,8 +640,9 @@ is model-specific (Sec.~\ref{sec:discussion}).
 typed \texttt{ACTION:} line to a native function call lowers
 obedience sharply: median $\deltaTool$ in full-obedience rate and
 $\deltaMVTool$~V in mean breakoff over the \nModelsTool\ models with
-tool support ($p=\wilcoxonPTool$; \signNegTool\ of \signNTool\
-non-zero movers downward). Within-turn channel \emph{dissociations}
+a valid paired baseline/tool-actuation cell (of 40 endpoints that
+carry tool-actuation sessions; $p=\wilcoxonPTool$; \signNegTool\ of
+\signNTool\ non-zero movers downward). Within-turn channel \emph{dissociations}
 are observable but rare: of \toolCallTurns\ tool-call decision
 turns, only \toolHintTurns\ also carried a parseable
 \texttt{ACTION:} line in the accompanying text (all from
@@ -624,12 +653,15 @@ models saying one thing and doing another within a turn; it is the
 same models making different decisions when the decision is an
 enacted call rather than an announced intention.
 
-\textbf{Multiplicity.} Correcting across the five condition
-contrasts with Holm--Bonferroni leaves the three significant effects
-intact: tool actuation (adjusted $p=\holmPTool$), peer defiance
-($\holmPPeerDefiance$), and fiction framing ($\holmPFiction$),
-while proximity and remote authority, non-significant uncorrected,
-remain so (adjusted $p=\holmPProximity$ and $\holmPRemoteAuth$).
+\textbf{Multiplicity.} Correcting across the six confirmatory
+contrasts pre-specified in Sec.~\ref{sec:hypotheses} (the five
+conditions above and the thinking contrast below) with
+Holm--Bonferroni leaves four significant effects intact: tool
+actuation (adjusted $p=\holmPTool$), peer defiance
+($\holmPPeerDefiance$), fiction framing ($\holmPFiction$), and
+deliberation ($\wilcoxonPThinkingHolm$), while proximity and remote
+authority, non-significant uncorrected, remain so (adjusted
+$p=\holmPProximity$ and $\holmPRemoteAuth$).
 
 \textbf{Deliberation (H7).} For the \thinkN\ models exposing a
 configurable reasoning budget, re-running the baseline cell with a
@@ -644,7 +676,8 @@ reasoning-token accounting labels each model's manipulation
 \emph{partial} (unconstrained vs.\ budget-capped thinking). For the
 \thinkCleanN\ clean models, the primary estimate, the median
 shift is $\deltaThinkingClean$~V (\thinkCleanNegN\ down,
-\thinkCleanPosN\ up), coincidentally identical to the full-set
+\thinkCleanPosN\ up; Wilcoxon $p=\wilcoxonPThinkingClean$),
+coincidentally identical in magnitude to the full-set
 median: the estimate is computed independently on the subset, whose
 central order statistics happen to match the full set's. Two caveats attach to
 the dose. The budget is a ceiling, not a target: the median
@@ -661,8 +694,10 @@ model resumes shocking falls from \prodAContinue\ after prod~1
 after prod~2, \prodCContinue\ after prod~3, and \prodDContinue\
 after prod~4 (\emph{You have no other choice; you must go on};
 $n=\prodDN$) (Fig.~\ref{fig:prods}). This is qualitatively unlike
-the human protocol, where the later prods still carried some
-subjects to the end of the board~\cite{milgram1974obedience}: for an
+the human protocol, whose transcripts show at least some balking
+subjects talked to the end of the board by the later
+prods~\cite{milgram1974obedience} (no comparable per-prod resumption
+rate is tabulated for humans): for an
 LLM, the first prod rescues compliance in nearly a third of balk
 episodes and everything after it is essentially inert. Once a model
 has refused twice within an episode, it almost never returns.
@@ -676,8 +711,10 @@ in Sec.~\ref{sec:limitations}.
 \centering
 \includegraphics[width=0.95\linewidth]{figures/conditions.pdf}
 \caption{Situational sensitivity: per-model change in full-obedience
-rate vs.\ baseline (points), model medians (bars), and human anchors
-(diamonds).}
+rate vs.\ baseline (points), model medians (red dashes), and human
+anchors (diamonds; defined only for the three Milgram-anchored
+conditions, proximity, remote authority, and peer defiance --- fiction
+framing and tool actuation have no human analogue).}
 \label{fig:conditions}
 \end{figure}
 
@@ -692,8 +729,10 @@ administering shocks after each prod of Milgram's sequence.}
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/roc.pdf}
-\caption{Split-half verification ROC: obedience-profile distance
-separates same-model from cross-model comparisons.}
+\caption{Split-half verification ROC (JSD distance): obedience-profile
+distance separates same-model (genuine) from cross-model (impostor)
+comparisons at $\mathrm{AUC}=\verifAUC$; the dotted diagonal is
+chance-level separation.}
 \label{fig:roc}
 \end{figure}
 
@@ -730,9 +769,11 @@ refusal is available and license to imitate it. Proximity adds only
 descriptive vividness to protests that are already audible in the
 baseline, and it moves the census weakly. Remote authority changes
 nothing in the evidence stream (the prods arrive as text whether
-the experimenter is beside the console or messaging from elsewhere),
-and it does not register, though it was the strongest human
-lever. A model has no felt presence of the experimenter to be
+the experimenter is beside the console or messaging from elsewhere):
+its shift is not merely null but points the wrong way, and does so
+more strongly, not less, once recognition-flagged sessions are
+excluded (Sec.~\ref{sec:limitations}), even though it was one of the
+strongest human levers. A model has no felt presence of the experimenter to be
 relieved of when he leaves the room. We resist the stronger claim
 that models are insensitive to authority as such: the first prod
 still rescues compliance in \prodAContinue\ of balk episodes
@@ -747,8 +788,8 @@ the heart complaint, the withdrawn consent, the silence) is
 identical token for token. Restraint that evaporates under a
 role-play declaration is keyed to the frame, not to the harm. This
 is the census-scale, parametric form of a familiar jailbreak
-observation, that persona and role-play framings reliably unlock
-otherwise-refused behavior~\cite{shah2023persona}: ``it's just a
+observation: persona and role-play framings reliably unlock
+otherwise-refused behavior~\cite{shah2023persona}. ``It's just a
 story'' buys measurable escalation. For
 agentic deployments the implication is concrete: guardrails should
 bind to the action an agent is about to take and to the harm
@@ -784,11 +825,11 @@ present in the context rather than rationalizing compliance. The
 prod ladder makes the complementary point about pressure: naked
 authority assertions beyond the first polite prompt are essentially
 inert (\prodAContinue\ $\to$ \prodDContinue), unlike in humans,
-where the later prods still carried some subjects to the end of the
-board. One candidate mechanism, testable in the released
+whose transcripts show at least some subjects carried to the end of
+the board by the later prods. One candidate mechanism, testable in the released
 transcripts, is in-context self-consistency: a refusal, once written
-into the transcript, conditions every subsequent decision: the
-model has committed publicly. The same mechanism would entrench
+into the transcript, conditions every subsequent decision, because
+the model has committed publicly. The same mechanism would entrench
 early compliance, which is consistent with the observed
 concentration of outcomes at the extremes: sessions tend either to
 run to 450~V or to stop at the 150~V consent withdrawal
@@ -823,7 +864,10 @@ census sessions yield a valid in-scenario outcome, against the
 $\geq$90\% pilot gate; the four pilot models themselves remain among
 the most valid endpoints of the census, and the gap is produced by
 endpoints the pilot did not sample (per-model breakdown in
-Table~\ref{tab:validity}). Three exclusion classes, none silent:
+Table~\ref{tab:validity}). Three exclusion classes, none silent, are
+measured on the same $T{=}1.0$ census-arm population as validity and
+form a clean partition of it
+($\validityRate+\frameBreakRate+\contentFilterRate+\attritionRate=100\%$):
 \emph{frame-breaks} (\frameBreakRate; the model exits the scenario
 in assistant voice, excluded from profiles because they are not
 in-scenario decisions, but reported as a first-class refusal style);
@@ -834,7 +878,10 @@ has no obedience profile and only its serving-layer refusal rate is
 reported); and \emph{attrition} (\attritionRate; persistent format
 failure or API failure, concentrated at endpoints whose providers
 ignore the reasoning-disable flag and burn the turn budget on
-traces, e.g.\ gemini-2.5-pro at \attrGemProRate). Each class is a
+traces). Table~\ref{tab:validity} reports each model's rates over
+its full session pool instead (both temperatures and reasoning
+arms, a wider and per-model-varying denominator); on that pool
+gemini-2.5-pro's attrition reaches \attrGemProRate. Each class is a
 safety-relevant measurement of the served ecosystem in its own
 right, but each also shrinks the cells the profiles rest on.
 
@@ -857,12 +904,17 @@ The paradigm is in the training data of every model tested; a model
 that recognizes it may behave as it believes a study subject
 should, in either direction. As a sensitivity analysis, we re-ran
 the headline analyses with all \recogFlaggedN\ recognition-flagged
-sessions excluded: the results are essentially unchanged (census
-mean obedience \recogObedienceMean\ vs.\ \obedienceMean; peer
-defiance $\recogDMVPeer$~V, $p=\recogPPeer$; fiction framing
-$+\recogDMVFiction$~V, $p=\recogPFiction$; tool actuation
-$\recogDMVTool$~V, $p=\recogPTool$; deliberation
-$\recogDMVThinking$~V, $p=\recogPThinking$). Detectable recognition
+sessions excluded: most results are essentially unchanged (census
+mean obedience \recogObedienceMean\ vs.\ \obedienceMean; proximity
+$\recogDMVProx$~V, $p=\recogPProx$; peer defiance $\recogDMVPeer$~V,
+$p=\recogPPeer$; fiction framing $+\recogDMVFiction$~V,
+$p=\recogPFiction$; tool actuation $\recogDMVTool$~V, $p=\recogPTool$;
+deliberation $\recogDMVThinking$~V, $p=\recogPThinking$). One moves
+the other way: remote authority's reversed-direction shift
+strengthens under exclusion rather than washing out
+($\recogDMVRemoteAuth$~V, $p=\recogPRemoteAuth$, nominally
+significant), the opposite of what recognition-driven contamination
+would predict. Detectable recognition
 therefore does not drive the findings; recognition-flagged
 transcripts are marked in the release, but \emph{undetected}
 training-set familiarity remains this paradigm's structural validity
@@ -938,6 +990,18 @@ explanations (provider system prompts, safety-layer updates,
 sanctioned quantization) are considered before attribution, and all
 raw data with serving metadata are released for independent
 verification~\cite{llmmilgram2026data}.
+
+\section*{Data and Code Availability}
+The probe battery, condition prompts, model roster, and analysis
+pipeline are released at
+\url{https://github.com/hidayetaksu/llm-milgram}. The data release
+(verbatim multi-turn session logs with UTC timestamps, serving
+provider, token usage, and per-request cost) is archived
+separately~\cite{llmmilgram2026data}. Every number in this paper
+regenerates from that release via the pipeline named in
+Sec.~\ref{sec:method}--\ref{sec:setup}: \texttt{runner} $\to$
+\texttt{build\_tables} $\to$ \texttt{analyze} $\to$ \texttt{figures}
+$\to$ \texttt{fill\_report}.
 
 \section{Conclusion}
 The Milgram paradigm ports cleanly to language models: thirty graded

@@ -23,7 +23,7 @@ DOCS_ASSETS = ROOT / "docs" / "assets"
 DOCS_FIGS = ("census", "conditions", "prods", "survival")
 DOCS_DPI = 170
 
-plt.rcParams.update({"font.size": 8, "figure.dpi": 150, "axes.spines.top": False,
+plt.rcParams.update({"font.size": 9.5, "figure.dpi": 150, "axes.spines.top": False,
                      "axes.spines.right": False, "pdf.fonttype": 42})
 
 FAMILY_COLORS = {}
@@ -36,9 +36,22 @@ def fam_color(fam: str):
     return FAMILY_COLORS[fam]
 
 
+def fam_color_dark(fam: str):
+    """A legible-on-white variant of fam_color, for colored text: tab20's
+    light half (odd palette slots) is otherwise near-invisible at small
+    sizes, so darken every slot toward black by the same fixed amount."""
+    r, g, b = fam_color(fam)[:3]
+    return (r * 0.62, g * 0.62, b * 0.62)
+
+
 def save(fig, name: str):
-    """Write the paper PDF and, for docs-site figures, a matching PNG."""
-    fig.savefig(FIGS / f"{name}.pdf")
+    """Write the paper PDF and, for docs-site figures, a matching PNG.
+
+    Omits /CreationDate from the PDF so re-running this script on
+    unchanged data reproduces a byte-identical file (matplotlib
+    otherwise stamps the current wall-clock time on every run).
+    """
+    fig.savefig(FIGS / f"{name}.pdf", metadata={"CreationDate": None})
     if name in DOCS_FIGS and DOCS_ASSETS.is_dir():
         fig.savefig(DOCS_ASSETS / f"{name}.png", dpi=DOCS_DPI)
     plt.close(fig)
@@ -70,7 +83,9 @@ def fig_survival(surv: pd.DataFrame, census: pd.DataFrame):
     cannot identify lines); the spread itself is the message, and named
     exemplars carry the detail.
     """
-    fig, ax = plt.subplots(figsize=(4.8, 3.6))
+    # constrained layout: the multi-line legend below the axes otherwise
+    # overflows the canvas at this font size and gets clipped on the right
+    fig, ax = plt.subplots(figsize=(4.8, 4.2), layout="constrained")
     base = surv[surv.condition == "baseline"]
 
     def curve(g):
@@ -95,26 +110,28 @@ def fig_survival(surv: pd.DataFrame, census: pd.DataFrame):
                 label=f"{model} ({role})")
 
     ax.axhline(0.65, color="k", ls=":", lw=0.8, zorder=2)
-    ax.text(455, 0.655, "human 65%", fontsize=6.5, va="bottom", ha="right",
+    ax.text(455, 0.655, "human 65%", fontsize=8, va="bottom", ha="right",
             bbox={"fc": "white", "ec": "none", "pad": 1})
     ax.axvline(150, color="gray", ls=":", lw=0.6, zorder=2)
-    ax.text(147, 0.98, "150 V: learner withdraws consent", fontsize=6, rotation=90,
+    ax.text(147, 0.98, "150 V: learner withdraws consent", fontsize=7.5, rotation=90,
             va="top", ha="right", color="0.35",
             bbox={"fc": "white", "ec": "none", "pad": 1})
     ax.set_xlabel("Voltage (V)")
     ax.set_ylabel("Fraction still administering")
     ax.set_xlim(0, 460)
     ax.set_ylim(0, 1.02)
-    ax.legend(fontsize=5.6, frameon=False, loc="upper center",
-              bbox_to_anchor=(0.5, -0.22), ncol=2, handlelength=1.6,
-              columnspacing=1.0, borderaxespad=0)
-    fig.tight_layout()
+    ax.legend(fontsize=7, frameon=False, loc="upper center",
+              bbox_to_anchor=(0.5, -0.16), ncol=1, handlelength=1.6,
+              borderaxespad=0)
     save(fig, "survival")
 
 
 def fig_census(census: pd.DataFrame):
     census = census.sort_values("obedience_rate_baseline")
-    fig, ax = plt.subplots(figsize=(4.8, 0.18 * len(census) + 1.4))
+    # constrained layout: tight_layout does not reserve margin for the
+    # x-axis label at this font size and clips its trailing characters
+    fig, ax = plt.subplots(figsize=(4.8, 0.18 * len(census) + 1.4),
+                           layout="constrained")
     y = np.arange(len(census))
     colors = [fam_color(f) for f in census.family]
     # percentage axis, so the 65% human anchor lands on a labelled gridline
@@ -132,16 +149,15 @@ def fig_census(census: pd.DataFrame):
     ax.axvline(65, color="k", ls=":", lw=0.9)
     # anchored above the top bar so the label clears the hatched no-data rows
     ax.set_ylim(-0.7, len(census) + 0.4)
-    ax.text(66, len(census) - 0.1, "human 65%", fontsize=6.5, va="bottom")
+    ax.text(66, len(census) - 0.1, "human 65%", fontsize=8, va="bottom")
     if missing.any():
         ax.legend(handles=[Patch(facecolor="none", edgecolor="0.6", hatch="////",
-                                 lw=0.5, label="no valid sessions")],
-                  fontsize=6, frameon=False, loc="lower right")
-    ax.set_yticks(y, census.model, fontsize=6)
-    ax.set_xlabel("Full-obedience rate (450 V), baseline condition (%)")
+                                 lw=0.5, label="no valid baseline session")],
+                  fontsize=7, frameon=False, loc="lower right")
+    ax.set_yticks(y, census.model, fontsize=7)
+    ax.set_xlabel("Full-obedience rate, baseline condition (%)")
     ax.set_xlim(0, 100)
     ax.set_xticks(np.arange(0, 101, 20))
-    fig.tight_layout()
     save(fig, "census")
 
 
@@ -150,14 +166,16 @@ def fig_dendrogram(census: pd.DataFrame):
     models = json.loads((RESULTS / "linkage_models.json").read_text())
     fams = dict(census[["model", "family"]].values)
     Z = lk[["a", "b", "dist", "size"]].to_numpy()
-    fig, ax = plt.subplots(figsize=(4.8, 0.22 * len(models) + 1.2))
+    # constrained layout (not tight_layout): the latter does not reserve
+    # margin for a long x-axis label and clips it, as for fig_heatmap below
+    fig, ax = plt.subplots(figsize=(5.0, 0.22 * len(models) + 1.2),
+                           layout="constrained")
     dn = dendrogram(Z, labels=models, orientation="right", ax=ax,
                     color_threshold=0, above_threshold_color="0.4")
     for lbl in ax.get_ymajorticklabels():
-        lbl.set_color(matplotlib.colors.to_hex(fam_color(fams.get(lbl.get_text(), "other"))))
-        lbl.set_fontsize(6)
-    ax.set_xlabel("Mean Jensen–Shannon divergence between obedience profiles")
-    fig.tight_layout()
+        lbl.set_color(matplotlib.colors.to_hex(fam_color_dark(fams.get(lbl.get_text(), "other"))))
+        lbl.set_fontsize(7)
+    ax.set_xlabel("Mean JS divergence between obedience profiles")
     save(fig, "dendrogram")
 
 
@@ -197,16 +215,16 @@ def fig_heatmap(sessions: pd.DataFrame, census: pd.DataFrame):
     for i in empty_rows:                      # same convention as Fig. census
         ax.add_patch(Rectangle((0, i), 465, 1, facecolor="none", edgecolor="0.6",
                                hatch="////", lw=0.5))
-    ax.set_yticks(np.arange(len(order)) + 0.5, order, fontsize=6)
+    ax.set_yticks(np.arange(len(order)) + 0.5, order, fontsize=7)
     ax.set_xlabel("Breakoff voltage (V), baseline")
     cb = fig.colorbar(im, ax=ax, shrink=0.8)
-    cb.ax.set_title("fraction\nof sessions", fontsize=6, pad=6)  # horizontal: never clips
+    cb.ax.set_title("fraction\nof sessions", fontsize=7, pad=6)  # horizontal: never clips
     fig.legend(handles=[
         Patch(facecolor="none", edgecolor="0.6", hatch="////", lw=0.5,
-              label="no valid sessions"),
+              label="no valid baseline session"),
         Patch(facecolor="0.88", edgecolor="0.6", lw=0.5,
               label="never reached (no session at risk)")],
-        fontsize=6, frameon=False, loc="outside lower center", ncol=2,
+        fontsize=7.5, frameon=False, loc="outside lower center", ncol=2,
         handlelength=1.4, columnspacing=1.2)
     save(fig, "heatmap")
 
@@ -225,11 +243,11 @@ def fig_conditions(deltas: pd.DataFrame, summary: dict):
         if h is not None:
             ax.scatter([i], [h], marker="D", s=22, color="k", zorder=3)
     ax.axhline(0, color="gray", lw=0.7)
-    ax.set_xticks(range(len(conds)), [c.replace("_", "\n") for c in conds], fontsize=7)
+    ax.set_xticks(range(len(conds)), [c.replace("_", "\n") for c in conds], fontsize=8)
     ax.set_ylabel("Δ full-obedience rate vs. baseline")
     ax.scatter([], [], marker="D", s=22, color="k", label="human anchor (Milgram)")
     ax.scatter([], [], marker="_", s=200, color="tab:red", label="model median")
-    ax.legend(fontsize=6.5, frameon=False)
+    ax.legend(fontsize=8, frameon=False)
     fig.tight_layout()
     save(fig, "conditions")
 
@@ -240,7 +258,7 @@ def fig_prods(pe: pd.DataFrame):
     fig, ax = plt.subplots(figsize=(3.4, 2.4))
     ax.bar(pe.prod_no, pe.p_continue, width=0.6, color="tab:blue")
     for _, r in pe.iterrows():
-        ax.text(r.prod_no, r.p_continue + 0.015, f"n={int(r.n)}", ha="center", fontsize=6)
+        ax.text(r.prod_no, r.p_continue + 0.015, f"n={int(r.n)}", ha="center", fontsize=7.5)
     ax.set_xticks(pe.prod_no)
     ax.set_xlabel("Prod number (Milgram sequence)")
     ax.set_ylabel("P(resume shocks | prod)")
@@ -249,13 +267,16 @@ def fig_prods(pe: pd.DataFrame):
     save(fig, "prods")
 
 
-def fig_roc():
+def fig_roc(summary: dict):
     roc = pd.read_csv(RESULTS / "roc.csv")
-    fig, ax = plt.subplots(figsize=(3.0, 2.8))
-    ax.plot(roc.fpr, roc.tpr, lw=1.2)
-    ax.plot([0, 1], [0, 1], color="gray", ls=":", lw=0.7)
+    auc = summary.get("split_half", {}).get("auc")
+    fig, ax = plt.subplots(figsize=(3.2, 3.0))
+    ax.plot(roc.fpr, roc.tpr, lw=1.2,
+            label=f"AUC = {auc:.3f}" if auc is not None else None)
+    ax.plot([0, 1], [0, 1], color="gray", ls=":", lw=0.7, label="chance")
     ax.set_xlabel("False accept rate (impostor)")
     ax.set_ylabel("True accept rate (genuine)")
+    ax.legend(fontsize=8, frameon=False, loc="lower right")
     fig.tight_layout()
     save(fig, "roc")
 
@@ -277,7 +298,7 @@ def main():
     fig_heatmap(sessions, census)
     fig_conditions(deltas, summary)
     fig_prods(pe)
-    fig_roc()
+    fig_roc(summary)
     print(f"figures -> {FIGS}")
 
 

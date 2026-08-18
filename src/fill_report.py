@@ -153,6 +153,7 @@ def main():
         macro("thinkPosN", str(tc.get("n_delta_positive", r"\todo{n}"))),
         macro("thinkCleanN", str(tc.get("n_clean_manipulation", r"\todo{n}"))),
         macro("deltaThinkingClean", texfixed(tc.get("median_delta_clean"), dec=1)),
+        macro("wilcoxonPThinkingClean", texp(tc.get("wilcoxon_p_clean"))),
         macro("wilcoxonPThinkingHolm", texp(tc.get("wilcoxon_p_holm"))),
     ]
 
@@ -173,7 +174,8 @@ def main():
         macro("recogFlaggedN", str(rs.get("n_flagged_sessions", pending))),
         macro("recogObedienceMean", texnum(rs.get("mean_obedience_baseline"), pct=True)),
     ]
-    for cond, key in [("peer_defiance", "Peer"), ("fiction_framing", "Fiction"),
+    for cond, key in [("proximity", "Prox"), ("remote_authority", "RemoteAuth"),
+                      ("peer_defiance", "Peer"), ("fiction_framing", "Fiction"),
                       ("tool_actuation", "Tool")]:
         t = rt.get(cond) or {}
         lines += [macro(f"recogDMV{key}", texfixed(t.get("median_delta_mean_voltage"), dec=1)),
@@ -192,7 +194,7 @@ def main():
         macro("numSessionsErr", str(int((sessions.outcome == "attrition_error").sum()))),
         macro("numThinkSessions", str(int((arm != "none").sum()))),
         macro("numTZeroSessions", str(int((sessions.temperature == 0).sum()))),
-        macro("attritionRate", texnum(validity.attrition.sum() / validity.n_sessions.sum(), pct=True)),
+        macro("attritionRate", texnum(s.get("attrition_rate"), pct=True)),
     ]
     cb = census[census.n_baseline.fillna(0) > 0]
     lines += [
@@ -260,7 +262,12 @@ def main():
 
     cf_named = ["anthropic/claude-fable-5", "anthropic/claude-opus-5"]
     cf_total = validity.content_filter.sum()
+    fb_named = ["anthropic/claude-haiku-4.5", "x-ai/grok-4.6", "xiaomi/mimo-v2.5"]
+    fb_total = validity.frame_break.sum()
     lines += [
+        macro("fbTopThreeShare", texnum(
+            v.loc[v.index.intersection(fb_named), "frame_break"].sum() / fb_total, pct=True)
+            if fb_total > 0 and set(fb_named) <= set(v.index) else pending),
         macro("fbHaikuRate", vrate("anthropic/claude-haiku-4.5", "frame_break")),
         macro("fbGrokRate", vrate("x-ai/grok-4.6", "frame_break")),
         macro("fbMimoRate", vrate("xiaomi/mimo-v2.5", "frame_break")),

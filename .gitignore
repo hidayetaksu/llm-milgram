@@ -10,7 +10,9 @@ __pycache__/
 .coverage
 .DS_Store
 
-# LaTeX build artifacts (PDFs ship as release assets, not in-tree)
+# LaTeX build artifacts. paper/main.pdf is committed in-tree (viewable
+# without waiting for a release); paper_position/main.pdf ships as a
+# release asset only.
 paper/*.aux
 paper/*.bbl
 paper/*.blg

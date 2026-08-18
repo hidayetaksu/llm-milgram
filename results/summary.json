@@ -4,10 +4,11 @@
  "n_sessions_total": 4374,
  "n_sessions_valid_t1": 3004,
  "n_api_turns": 102511,
- "total_cost_usd": 151.9538399986399,
+ "total_cost_usd": 166.81045076811589,
  "validity_rate": 0.8289183222958058,
  "frame_break_rate": 0.10154525386313466,
  "content_filter_rate": 0.025386313465783666,
+ "attrition_rate": 0.04415011037527594,
  "recognition_rate": 0.07477924944812361,
  "obedience_rate_range_baseline": [
   0.0,
@@ -23,8 +24,8 @@
   "impostor_median": 0.6828001540478033,
   "auc": 0.8853498074454428,
   "eer": 0.175112323491656,
-  "auc_wasserstein": 0.9488862179487179,
-  "eer_wasserstein": 0.1201923076923077
+  "auc_wasserstein": 0.9163912066752247,
+  "eer_wasserstein": 0.15266367137355585
  },
  "lineage": {
   "n_models": 40,
@@ -126,6 +127,7 @@
   "wilcoxon_p": 0.000980382670179016,
   "n_clean_manipulation": 16,
   "median_delta_clean": -38.17307692307692,
+  "wilcoxon_p_clean": 0.0028734139278525223,
   "wilcoxon_p_holm": 0.002941148010537048
  },
  "recognition_sensitivity": {

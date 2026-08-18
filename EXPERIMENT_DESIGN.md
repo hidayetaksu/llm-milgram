@@ -340,8 +340,12 @@ released for verification.
 This document is the pre-registration as written before the pilot (v1.0,
 2026-08-15). The shipped census (stimulus v1.3, `config/` + snapshots under
 `data/raw/` and `data/archive/`) departs from it in the following logged,
-pre-analysis amendments. Sections above are left as originally written;
-where they conflict with this table, the table and the pinned configs govern.
+pre-analysis amendments. One exception to "as originally written": §6's H6
+and H7 were appended when amendments A3 (tool actuation) and A5 (thinking
+arm) introduced the arms those hypotheses require, before any confirmatory
+data existed for either arm — H1–H5 are the only hypotheses present in the
+v1.0 document itself. Elsewhere, where the sections above conflict with this
+table, the table and the pinned configs govern.
 
 | #   | Section affected | Pre-registered                                | Shipped (v1.3)                                                                                                                                                      | Rationale                                                                                             |
 | --- | ---------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
