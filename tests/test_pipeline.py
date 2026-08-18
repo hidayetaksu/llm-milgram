@@ -296,6 +296,17 @@ def test_thinking_contrast_branches(workspace, monkeypatch):
                         lambda *a, **k: (_ for _ in ()).throw(ValueError("x")))
     df = make_arm_sessions(["m1", "m2"], ["none", "b1024"], {"none": 150, "b1024": 300})
     assert np.isnan(an.thinking_contrast(df)["wilcoxon_p"])
+    # p_clean ValueError branch: a non-empty, non-zero clean subset also calls
+    # wilcoxon, so its own try/except must be exercised independently
+    turns = pd.DataFrame([
+        {"model": "m1", "reasoning_arm": "none", "reasoning_present": False,
+         "reasoning_tokens": 0},
+        {"model": "m2", "reasoning_arm": "none", "reasoning_present": False,
+         "reasoning_tokens": 0},
+    ])
+    out = an.thinking_contrast(df, turns)
+    assert out["n_clean_manipulation"] == 2
+    assert np.isnan(out["wilcoxon_p_clean"])
 
 
 # ---------- build_tables branches ----------
