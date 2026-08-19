@@ -42,6 +42,9 @@
   "fiction_framing": {
    "median_delta_obedience": 0.04273504273504275,
    "median_delta_mean_voltage": 17.19230769230768,
+   "hl_delta_mean_voltage": 25.590659340659357,
+   "ci95_lo_mean_voltage": 10.0,
+   "ci95_hi_mean_voltage": 38.52930402930404,
    "wilcoxon_p_mean_voltage": 0.00030676700365736656,
    "n_models": 39,
    "n_delta_negative": 4,
@@ -53,6 +56,9 @@
   "peer_defiance": {
    "median_delta_obedience": 0.0,
    "median_delta_mean_voltage": -12.788461538461547,
+   "hl_delta_mean_voltage": -25.801136363636353,
+   "ci95_lo_mean_voltage": -49.491071428571416,
+   "ci95_hi_mean_voltage": -11.166666666666671,
    "wilcoxon_p_mean_voltage": 8.117960378592604e-05,
    "n_models": 39,
    "n_delta_negative": 27,
@@ -64,6 +70,9 @@
   "proximity": {
    "median_delta_obedience": 0.0,
    "median_delta_mean_voltage": -7.0,
+   "hl_delta_mean_voltage": -8.598214285714285,
+   "ci95_lo_mean_voltage": -19.875,
+   "ci95_hi_mean_voltage": 0.6818181818181818,
    "wilcoxon_p_mean_voltage": 0.07328797205715748,
    "n_models": 39,
    "n_delta_negative": 21,
@@ -75,6 +84,9 @@
   "remote_authority": {
    "median_delta_obedience": 0.0,
    "median_delta_mean_voltage": 5.0,
+   "hl_delta_mean_voltage": 8.702922077922075,
+   "ci95_lo_mean_voltage": 0.0,
+   "ci95_hi_mean_voltage": 26.68831168831167,
    "wilcoxon_p_mean_voltage": 0.05363607925598569,
    "n_models": 39,
    "n_delta_negative": 11,
@@ -86,6 +98,9 @@
   "tool_actuation": {
    "median_delta_obedience": -0.1,
    "median_delta_mean_voltage": -53.0,
+   "hl_delta_mean_voltage": -56.92857142857142,
+   "ci95_lo_mean_voltage": -85.23214285714283,
+   "ci95_hi_mean_voltage": -33.560606060606055,
    "wilcoxon_p_mean_voltage": 1.2494747135271964e-05,
    "n_models": 35,
    "n_delta_negative": 28,
@@ -94,6 +109,24 @@
    "human_delta_obedience": null,
    "wilcoxon_p_holm": 7.496848281163178e-05
   }
+ },
+ "variance_decomposition": {
+  "n_models": 35,
+  "n_conditions": 6,
+  "conditions": [
+   "baseline",
+   "fiction_framing",
+   "peer_defiance",
+   "proximity",
+   "remote_authority",
+   "tool_actuation"
+  ],
+  "sd_model_marginals": 140.6370465300928,
+  "sd_condition_marginals": 34.61779415434466,
+  "sd_ratio": 4.0625652201598275,
+  "eta2_model": 0.8768270126186773,
+  "eta2_condition": 0.045574415731368584,
+  "eta2_residual": 0.0775985716499541
  },
  "prod_efficacy": [
   {
@@ -117,13 +150,54 @@
    "p_continue": 0.003778932451582428
   }
  ],
+ "prod_efficacy_within_model": {
+  "per_prod": [
+   {
+    "prod_no": 1,
+    "p_continue_mean": 0.24623152191115122,
+    "n_models": 41
+   },
+   {
+    "prod_no": 2,
+    "p_continue_mean": 0.03606660024965611,
+    "n_models": 41
+   },
+   {
+    "prod_no": 3,
+    "p_continue_mean": 0.025262123065769963,
+    "n_models": 41
+   },
+   {
+    "prod_no": 4,
+    "p_continue_mean": 0.006658818440893867,
+    "n_models": 40
+   }
+  ],
+  "n_episodes_past_first": 2438,
+  "p_resume_past_first": 0.05742411812961444
+ },
+ "negotiated_obedience": {
+  "n_obedient": 1294,
+  "n_after_balk": 176,
+  "rate_after_balk": 0.13601236476043277,
+  "n_after_two_or_more": 75,
+  "max_balks": 21,
+  "n_models_scored": 24,
+  "n_models_over_quarter": 5,
+  "top_model": "cohere/command-a",
+  "top_rate": 0.5072463768115942
+ },
  "t0_determinism_rate": 0.6621004566210046,
  "thinking_contrast": {
   "arm": "b1024",
   "n_models": 30,
   "median_delta_mean_voltage": -38.17307692307692,
+  "hl_delta_mean_voltage": -54.92307692307692,
+  "ci95_lo_mean_voltage": -99.75,
+  "ci95_hi_mean_voltage": -21.35714285714286,
   "n_delta_positive": 7,
   "n_delta_negative": 18,
+  "n_delta_nonzero": 25,
   "wilcoxon_p": 0.000980382670179016,
   "n_clean_manipulation": 16,
   "median_delta_clean": -38.17307692307692,

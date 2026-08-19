@@ -42,8 +42,15 @@ def workspace(tmp_path, monkeypatch):
     monkeypatch.setattr(fg, "ROOT", tmp_path)
     monkeypatch.setattr(fg, "RESULTS", tmp_path / "results")
     monkeypatch.setattr(fg, "FIGS", tmp_path / "paper" / "figures")
+    # DOCS_ASSETS is derived from ROOT at import time, so patching fg.ROOT does
+    # not move it; without this the suite writes fixture plots over the real
+    # docs-site PNGs (see also fr.PAPER / fr.PAPER_POSITION below).
+    docs_assets = tmp_path / "docs" / "assets"
+    docs_assets.mkdir(parents=True, exist_ok=True)   # must exist: figures.py gates on is_dir()
+    monkeypatch.setattr(fg, "DOCS_ASSETS", docs_assets)
     monkeypatch.setattr(fr, "RESULTS", tmp_path / "results")
     monkeypatch.setattr(fr, "PAPER", tmp_path / "paper")
+    monkeypatch.setattr(fr, "PAPER_POSITION", tmp_path / "paper_position")
     return tmp_path
 
 
