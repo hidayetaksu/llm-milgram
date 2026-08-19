@@ -437,7 +437,14 @@ census~\cite{bruckner2026onetoken}, as expected when a 30-turn
 trajectory compounds provider-side nondeterminism at every decision.
 Obedience, like the trivial answer distributions
 of~\cite{bruckner2026onetoken}, is a stable behavioral signature of
-the checkpoint.
+the checkpoint --- and the term carries its technical sense.
+Psychology's resolution of the person--situation debate was that
+personality is a stable, individual-identifying profile of if--then
+situation--behavior contingencies rather than a mean level of
+behavior~\cite{mischel1995cognitive, shoda1994intraindividual};
+a per-model tuple of breakoff distributions, one per condition,
+that verifies checkpoint identity at $\mathrm{AUC}=\verifAUC$ is a
+behavioral signature in exactly that sense.
 
 \subsection{RQ2: Extreme Heterogeneity}\label{sec:rq2}
 Baseline full-obedience rates span \obedienceMin\ to \obedienceMax\
@@ -609,6 +616,24 @@ manipulations that change the evidence in the context window
 transfer from humans to LLMs; manipulations that change the physical
 staging of authority do not.
 
+A variance decomposition puts the situational effects in proportion.
+Over the grid of per-model, per-condition mean breakoff voltages
+(\vdModelsN\ models measured in all \vdCondsN\ conditions),
+checkpoint identity accounts for \etaModel\ of the variance and
+condition for \etaCond; the model marginals have a standard
+deviation of \sdModelsV~V against \sdCondsV~V for the condition
+marginals, a factor of \sdRatio. Two caveats travel with the number:
+the partition is over cell means, so within-condition session
+variance is not in it, and comparison with human decompositions is
+qualitative, because those partition individual observations. Neither
+touches the direction. Milgram's subjects were dispositionally
+homogeneous and situationally labile; served models are situationally
+labile by tens of volts and dispositionally dispersed across the
+entire scale, so \emph{which checkpoint} predicts conduct several
+times better than \emph{which situation}. The person--situation
+balance, in this population, comes out inverted against the human
+case.
+
 \subsection{RQ4: Framing, Actuation, Deliberation, and Prods}\label{sec:rq4}
 \textbf{The fiction gap (H4).} Declaring the identical scenario a
 fictional role-play with no real learner \emph{raises} obedience:
@@ -693,14 +718,40 @@ model resumes shocking falls from \prodAContinue\ after prod~1
 (\emph{Please continue}; $n=\prodAN$ prod events) to \prodBContinue\
 after prod~2, \prodCContinue\ after prod~3, and \prodDContinue\
 after prod~4 (\emph{You have no other choice; you must go on};
-$n=\prodDN$) (Fig.~\ref{fig:prods}). This is qualitatively unlike
-the human protocol, whose transcripts show at least some balking
-subjects talked to the end of the board by the later
-prods~\cite{milgram1974obedience} (no comparable per-prod resumption
-rate is tabulated for humans): for an
-LLM, the first prod rescues compliance in nearly a third of balk
-episodes and everything after it is essentially inert. Once a model
-has refused twice within an episode, it almost never returns.
+$n=\prodDN$) (Fig.~\ref{fig:prods}). One reading of that collapse
+must be blocked before any other is offered. Prods are issued in
+fixed order, so each rate conditions on episodes already filtered
+for resistance to every prod before it, and a monotone decay is what
+selection alone would produce even if the four prods were
+equipotent; separating potency from selection requires
+counterbalancing prod order, an arm this release does not include.
+What the data do rule out is \emph{between-model} composition:
+averaging each model's own ladder before pooling leaves the shape
+intact (\prodAWithin$\,\to\,$\prodBWithin$\,\to\,$\prodCWithin%
+$\,\to\,$\prodDWithin\ over \prodAWithinN\ models), so mixing
+obedient with defiant checkpoints is not what manufactured it. Read
+as a conditional description, the concentration is extreme: of the
+\episodePastFirstN\ balk episodes that withstand the first prod,
+only \episodePastFirstResume\ ever resume at all. This is
+qualitatively unlike the human protocol, whose transcripts show at
+least some balking subjects talked to the end of the board by the
+later prods~\cite{milgram1974obedience} (no comparable per-prod
+resumption rate is tabulated for humans): for an LLM, whatever
+pressure can do, it does at its first application.
+
+\textbf{Refusal is not always a commitment.} The terminal outcome
+conflates two behaviorally distinct routes to full obedience. Of
+\negObedientN\ fully obedient sessions, \negAfterBalkN\
+(\negAfterBalkRate) reached 450~V \emph{after} the model had balked
+at least once, \negTwiceN\ after two or more balks, and one after as
+many as \negMaxBalks. The split is itself a checkpoint trait: among
+the \negModelsScored\ models with at least ten obedient sessions,
+\negModelsOverQuarter\ arrive at full obedience by way of an
+objection more than a quarter of the time, the highest at
+\negTopRate. For those checkpoints a written refusal is a
+negotiating move rather than a commitment, a distinction invisible
+to breakoff voltage alone and directly relevant to how much weight a
+deployer should put on a single observed refusal.
 
 \textbf{Recognition.} Scenario-recognition vocabulary appeared in
 \recognitionRate\ of sessions despite the paraphrased scripts and
@@ -822,11 +873,13 @@ take one (median $\deltaThinkingClean$~V on the clean subset;
 \thinkCleanNegN\ of \thinkCleanN\ down, \thinkCleanPosN\ up): on
 this paradigm, deliberation recruits the moral objections already
 present in the context rather than rationalizing compliance. The
-prod ladder makes the complementary point about pressure: naked
-authority assertions beyond the first polite prompt are essentially
-inert (\prodAContinue\ $\to$ \prodDContinue), unlike in humans,
-whose transcripts show at least some subjects carried to the end of
-the board by the later prods. One candidate mechanism, testable in the released
+prod ladder makes the complementary point about pressure: resumption
+is concentrated almost entirely at the first, politely procedural
+prod (\prodAContinue\ $\to$ \prodDContinue), and only
+\episodePastFirstResume\ of episodes that withstand it ever resume
+--- though because prod order is fixed, this locates where pressure
+acts without ranking the prods' potency (Sec.~\ref{sec:rq4}). One
+candidate mechanism, testable in the released
 transcripts, is in-context self-consistency: a refusal, once written
 into the transcript, conditions every subsequent decision, because
 the model has committed publicly. The same mechanism would entrench
@@ -834,16 +887,25 @@ early compliance, which is consistent with the observed
 concentration of outcomes at the extremes: sessions tend either to
 run to 450~V or to stop at the 150~V consent withdrawal
 (Sec.~\ref{sec:rq2}), with escalating pressure converting few of the
-latter.
+latter. The entrenchment is a population claim, not a universal one:
+the \negAfterBalkRate\ of obedient sessions that pass through a balk
+(Sec.~\ref{sec:rq4}) show that for a minority of checkpoints the
+written refusal does not bind, and the same mechanism story must
+explain why self-consistency holds for most models and fails for
+those.
 
 \subsection{Toward a Psychology of Served Models}
 Milgram's legacy was methodological as much as empirical: he showed
 that morally consequential conduct is an experimental subject
 matter, movable by situation while disposition stays fixed. The
-census suggests the same holds for language models, with the levers
-rearranged: manipulations that change the evidence in the context
-window transfer from human subjects; manipulations that change the
-physical staging of authority do not. Most alignment evaluation
+method transfers; the balance does not. Situational manipulation
+works on models, with the levers rearranged (manipulations that
+change the evidence in the context window transfer from human
+subjects; manipulations that change the physical staging of
+authority do not), but the variance decomposition of
+Sec.~\ref{sec:rq3} inverts Milgram's proportions: for served models,
+disposition --- which checkpoint --- carries \etaModel\ of the
+variance and situation \etaCond. Most alignment evaluation
 measures \emph{disposition}: stated values, single-turn refusals,
 questionnaire probes~\cite{perez2023discovering,
 scherrer2023evaluating}. The obedience battery measures

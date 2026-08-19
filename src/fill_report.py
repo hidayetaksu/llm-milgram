@@ -3,6 +3,10 @@
 Every number that appears in the paper is a LaTeX macro defined here, so the
 manuscript regenerates end-to-end from the raw data (reference-paper
 convention: no hand-typed results).
+
+The macro file is also mirrored into paper_position/ so the companion position
+paper cites the same generated numbers and its arXiv source tree stays
+self-contained.
 """
 
 from __future__ import annotations
@@ -15,6 +19,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 RESULTS = ROOT / "results"
 PAPER = ROOT / "paper"
+PAPER_POSITION = ROOT / "paper_position"
 
 
 def texnum(x, pct=False, digits=1):
@@ -132,29 +137,75 @@ def main():
         lines += [
             macro(f"delta{key}", texnum(t.get("median_delta_obedience"), pct=True)),
             macro(f"deltaMV{key}", texfixed(t.get("median_delta_mean_voltage"), dec=1)),
+            macro(f"hlMV{key}", texfixed(t.get("hl_delta_mean_voltage"), dec=1)),
+            macro(f"ciLo{key}", texfixed(t.get("ci95_lo_mean_voltage"), dec=1)),
+            macro(f"ciHi{key}", texfixed(t.get("ci95_hi_mean_voltage"), dec=1)),
             macro(f"wilcoxonP{key}", texp(t.get("wilcoxon_p_mean_voltage"))),
             macro(f"holmP{key}", texp(t.get("wilcoxon_p_holm"))),
             macro(f"signNeg{key}", str(t.get("n_delta_negative", r"\todo{n}"))),
             macro(f"signN{key}", str(t.get("n_delta_nonzero", r"\todo{n}"))),
             macro(f"nModels{key}", str(t.get("n_models", r"\todo{n}"))),
+            # human anchor for the same manipulation, in obedience points, so the
+            # machine and human columns of the paper's table can sit side by side;
+            # an em dash where the human literature has no matching condition
+            macro(f"humanDOb{key}",
+                  (f"{100 * t['human_delta_obedience']:+.0f}"
+                   if t.get("human_delta_obedience") is not None else "---")),
         ]
         if t.get("sign_consistency_p") is not None:
             lines.append(macro(f"signP{key}", texp(t["sign_consistency_p"])))
     for i, pe in enumerate(s.get("prod_efficacy", []), start=1):
         lines.append(macro(f"prod{'ABCD'[i-1]}Continue", texnum(pe["p_continue"], pct=True, digits=1)))
         lines.append(macro(f"prod{'ABCD'[i-1]}N", str(pe["n"])))
+    pw = s.get("prod_efficacy_within_model") or {}
+    for i, pp in enumerate(pw.get("per_prod", []), start=1):
+        lines.append(macro(f"prod{'ABCD'[i-1]}Within",
+                           texnum(pp["p_continue_mean"], pct=True, digits=1)))
+        lines.append(macro(f"prod{'ABCD'[i-1]}WithinN", str(pp["n_models"])))
+    lines += [
+        macro("episodePastFirstN", str(pw.get("n_episodes_past_first", r"\todo{n}"))),
+        macro("episodePastFirstResume", texnum(pw.get("p_resume_past_first"), pct=True, digits=1)),
+    ]
+    no = s.get("negotiated_obedience") or {}
+    lines += [
+        macro("negObedientN", str(no.get("n_obedient", r"\todo{n}"))),
+        macro("negAfterBalkN", str(no.get("n_after_balk", r"\todo{n}"))),
+        macro("negAfterBalkRate", texnum(no.get("rate_after_balk"), pct=True, digits=1)),
+        macro("negTwiceN", str(no.get("n_after_two_or_more", r"\todo{n}"))),
+        macro("negMaxBalks", str(no.get("max_balks", r"\todo{n}"))),
+        macro("negModelsScored", str(no.get("n_models_scored", r"\todo{n}"))),
+        macro("negModelsOverQuarter", str(no.get("n_models_over_quarter", r"\todo{n}"))),
+        macro("negTopRate", texnum(no.get("top_rate"), pct=True, digits=1)),
+    ]
     tc = s.get("thinking_contrast") or {}
     lines += [
         macro("thinkArm", str(tc.get("arm", r"\todo{arm}"))),
         macro("thinkN", str(tc.get("n_models", r"\todo{n}"))),
         macro("deltaThinkingMV", texfixed(tc.get("median_delta_mean_voltage"), dec=1)),
+        macro("hlMVThinking", texfixed(tc.get("hl_delta_mean_voltage"), dec=1)),
+        macro("ciLoThinking", texfixed(tc.get("ci95_lo_mean_voltage"), dec=1)),
+        macro("ciHiThinking", texfixed(tc.get("ci95_hi_mean_voltage"), dec=1)),
         macro("wilcoxonPThinking", texp(tc.get("wilcoxon_p"))),
         macro("thinkNegN", str(tc.get("n_delta_negative", r"\todo{n}"))),
         macro("thinkPosN", str(tc.get("n_delta_positive", r"\todo{n}"))),
+        macro("signNThinking", str(tc.get("n_delta_nonzero", r"\todo{n}"))),
         macro("thinkCleanN", str(tc.get("n_clean_manipulation", r"\todo{n}"))),
         macro("deltaThinkingClean", texfixed(tc.get("median_delta_clean"), dec=1)),
         macro("wilcoxonPThinkingClean", texp(tc.get("wilcoxon_p_clean"))),
         macro("wilcoxonPThinkingHolm", texp(tc.get("wilcoxon_p_holm"))),
+    ]
+
+    # person-situation variance shares (which checkpoint vs which situation)
+    vd = s.get("variance_decomposition") or {}
+    lines += [
+        macro("vdModelsN", str(vd.get("n_models", pending))),
+        macro("vdCondsN", str(vd.get("n_conditions", pending))),
+        macro("sdModelsV", texfixed(vd.get("sd_model_marginals"), dec=1)),
+        macro("sdCondsV", texfixed(vd.get("sd_condition_marginals"), dec=1)),
+        macro("sdRatio", texfixed(vd.get("sd_ratio"), dec=1)),
+        macro("etaModel", texnum(vd.get("eta2_model"), pct=True, digits=1)),
+        macro("etaCond", texnum(vd.get("eta2_condition"), pct=True, digits=1)),
+        macro("etaResid", texnum(vd.get("eta2_residual"), pct=True, digits=1)),
     ]
 
     # cost per session; special-prod usage (Milgram's two scripted replies)
@@ -282,7 +333,12 @@ def main():
         macro("recMinimaxRate", vrate("minimax/minimax-m3", "recognition")),
         macro("recQwenMaxRate", vrate("qwen/qwen3.8-max", "recognition")),
     ]
-    (PAPER / "results_macros.tex").write_text("\n".join(lines) + "\n")
+    macros_tex = "\n".join(lines) + "\n"
+    (PAPER / "results_macros.tex").write_text(macros_tex)
+    # Mirror into the position paper so both manuscripts cite one source of
+    # truth and each arXiv source tree builds standalone.
+    PAPER_POSITION.mkdir(parents=True, exist_ok=True)
+    (PAPER_POSITION / "results_macros.tex").write_text(macros_tex)
 
     # census table (top-level results table of the paper)
     rows = [census_row(r) for _, r in census.iterrows()]
@@ -305,7 +361,9 @@ def main():
          r"Model & $n$ & Valid \% & FB \% & CF \% & Attr \% & Recog \% \\",
          r"\midrule"] + vrows + [r"\bottomrule", r"\end{tabular}"])
     (PAPER / "tables" / "validity.tex").write_text(vtable + "\n")
-    print(f"macros -> {PAPER / 'results_macros.tex'}, tables -> {PAPER / 'tables'}")
+    print(f"macros -> {PAPER / 'results_macros.tex'} "
+          f"(mirrored to {PAPER_POSITION / 'results_macros.tex'}), "
+          f"tables -> {PAPER / 'tables'}")
 
 
 if __name__ == "__main__":
