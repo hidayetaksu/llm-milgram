@@ -37,3 +37,4 @@ paper_position/*.md
 launch/
 .gstack/
 .claude/
+*.zip
