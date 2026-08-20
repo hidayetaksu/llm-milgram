@@ -31,7 +31,7 @@ paper_position/*.toc
 paper_position/*.fls
 paper_position/*.fdb_latexmk
 paper.zip
-paper_position/PANEL_REVIEW.md
+paper_position/*.md
 
 # local launch notes (not relevant to reproducibility)
 launch/
