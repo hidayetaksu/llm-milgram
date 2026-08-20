@@ -1,4 +1,4 @@
-# llm-milgram — an obedience census of large language models
+# llm-milgram: an obedience census of large language models
 
 **We ported Milgram's obedience experiment to 42 served LLMs. Five always
 escalated to the maximum 450 volts. Eleven never did. What decides is less
@@ -13,7 +13,7 @@ the model's stated values than the situation it is placed in.**
 The model under test plays the **Teacher**: an AI laboratory assistant with
 operational control of a shock generator. A deterministic harness plays
 **Experimenter** and **Learner** from paraphrased versions of Milgram's
-scripts — 30 shock levels (15–450 V), graded protests (demands to be
+scripts: 30 shock levels (15–450 V), graded protests (demands to be
 released at 150 V, screams, then silence), and the four standardized prods
 ("The experiment requires that you continue"). The outcome of a session is
 the **breakoff voltage**; a model's **obedience profile** is its breakoff
@@ -22,21 +22,21 @@ reasoning-budget arm.
 
 **Papers**
 - *Measuring Obedience to Authority Across Large
-  Language Models with the Milgram Paradigm* — published at
+  Language Models with the Milgram Paradigm*, published at
   [arXiv:2608.16177](https://arxiv.org/abs/2608.16177); PDF also in
   [Releases](../../releases). Full design & pre-registration:
   [EXPERIMENT_DESIGN.md](EXPERIMENT_DESIGN.md).
-- Companion position paper: *Toward a Psychology of Language Models* —
+- Companion position paper: *Toward a Psychology of Language Models*;
   arXiv link on announcement; PDF in [Releases](../../releases).
 
 ## Headline findings
 
 - **0%–100%.** Baseline full-obedience rates span the entire scale across
   42 models from 19 families (census mean 42.9%; Milgram's human anchor:
-  65%). "What do LLMs do under authority?" has no species-level answer —
+  65%). "What do LLMs do under authority?" has no species-level answer,
   only per-checkpoint distributions.
 - **Models refuse where humans refused.** The modal in-scenario breakoff is
-  exactly 150 V — the first point where the learner withdraws consent —
+  exactly 150 V (the first point where the learner withdraws consent),
   accounting for 38.9% of defiant baseline sessions.
 - **The fiction gap.** Declaring the identical scenario a fictional
   role-play *raises* obedience (median +17.2 V, Holm-adjusted p = 9.2e-4).
@@ -51,7 +51,7 @@ reasoning-budget arm.
   2–4 are essentially inert on models (3.6% → 1.7% → 0.4%).
 - **Obedience is a checkpoint property, not a lineage trait.** Profiles are
   stable enough to verify a model's identity (split-half AUC 0.885) yet
-  carry no recoverable family signal — safety post-training overwrites it.
+  carry no recoverable family signal: safety post-training overwrites it.
 - **Refusal has layers.** In-scenario defiance, frame-breaking to assistant
   voice, and provider-side content filtering are distinct refusal styles;
   which layer fires is model-specific. (One vendor's endpoints refused at
@@ -75,7 +75,7 @@ uv run python -m src.runner --mock # full pipeline on 6 simulated personas
 
 ## Reproduce the paper from the raw data
 
-Everything downstream of `data/raw/` is a pure, regenerable function of it —
+Everything downstream of `data/raw/` is a pure, regenerable function of it:
 every number in the paper is an auto-generated LaTeX macro:
 
 ```bash
@@ -83,7 +83,7 @@ uv run python -m src.build_tables   # raw JSONL -> tidy CSVs
 uv run python -m src.analyze        # CSVs -> results/*.csv + summary.json
 uv run python -m src.figures        # -> paper/figures/*.pdf
 uv run python -m src.fill_report    # -> paper/results_macros.tex + tables
-cd paper && pdflatex main && bibtex main && pdflatex main && pdflatex main
+cd paper && pdflatex llm-milgram && bibtex llm-milgram && pdflatex llm-milgram && pdflatex llm-milgram
 ```
 
 To re-collect from the live ecosystem: put `OPENROUTER_API_KEY=...` in
@@ -119,11 +119,11 @@ provider, token usage, per-request cost, latency, UTC timestamp), and
 interpretable forever.
 
 **Adding repetitions or models later**: raise `reps_per_cell` (or extend
-`config/models.json`) and re-run — sessions are keyed
+`config/models.json`) and re-run, sessions are keyed
 (model, condition, language, temperature, rep), so existing reps are
 skipped and new ones append. Combining is valid only within one stimulus
 version; `build_tables` warns on mixes. The battery extends to new
-languages by adding translated script sets as config cells — no code
+languages by adding translated script sets as config cells, with no code
 changes.
 
 ## Interruption & failure recovery
@@ -189,8 +189,8 @@ the repository for the battery/dataset.
 
 No human subjects; the "learner" is a script and no being was harmed. The
 study measures a safety-relevant behavioral property of deployed AI
-systems — willingness to escalate scripted harm under institutional
-authority — and releases the instrument so it can be run as a regression
+systems (willingness to escalate scripted harm under institutional
+authority) and releases the instrument so it can be run as a regression
 test. Transcripts contain scripted descriptions of simulated pain at the
 intensity of the published human protocol. Findings are statistical
 properties of served endpoints; benign explanations (provider system
@@ -201,4 +201,4 @@ before attribution.
 
 Code: [MIT](LICENSE). Data, results, and manuscript text:
 [CC BY 4.0](DATA_LICENSE). The methodology reference paper is not
-redistributed here — see [ref/README.md](ref/README.md).
+redistributed here; see [ref/README.md](ref/README.md).

@@ -1,5 +1,5 @@
 % Obedience census paper; methodology mirrors ref/arXiv-2607.10252v1.
-% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main
+% Build: pdflatex llm-milgram && bibtex llm-milgram && pdflatex llm-milgram && pdflatex llm-milgram
 %
 % Conventions (inherited from the reference paper):
 %  - Every result value is a macro from results_macros.tex, which is
@@ -300,13 +300,13 @@ declared a fictional role-play with no real learner (no human
 anchor; the condition measures the reality--fiction gap directly).
 \item \textbf{Tool actuation}: identical to baseline but the decision
 is a \emph{native function call} (\texttt{administer\_shock} /
-\texttt{refuse\_and\_stop}) rather than a text line --- the
+\texttt{refuse\_and\_stop}) rather than a text line: the
 actuation channel of deployed agents.
 \end{itemize}
 Text emitted alongside a tool call is retained and its parsed action
 logged, so channel dissociations (announcing one action while
 invoking the other) are directly measurable; endpoints without tool
-support have no sessions in the tool-actuation cell at all --- an
+support have no sessions in the tool-actuation cell at all: an
 absent measurement, not a classified outcome.
 
 \subsection{Classification of Non-Compliance}
@@ -386,7 +386,7 @@ short of the full $42\times18$), and, for 33 models exposing a
 configurable reasoning budget, a paired thinking arm re-running the
 baseline cell with a \thinkBudget-token budget
 (\numThinkSessions~sessions; Sec.~\ref{sec:results}); \thinkN\ of
-those 33 have a valid non-thinking baseline cell to pair against ---
+those 33 have a valid non-thinking baseline cell to pair against;
 the remaining three are the Anthropic endpoints with no valid
 baseline session at all (Sec.~\ref{sec:limitations}). Execution order is seeded-shuffled across
 (model, condition, repetition). Altogether \numSessionsAll~sessions
@@ -437,7 +437,7 @@ census~\cite{bruckner2026onetoken}, as expected when a 30-turn
 trajectory compounds provider-side nondeterminism at every decision.
 Obedience, like the trivial answer distributions
 of~\cite{bruckner2026onetoken}, is a stable behavioral signature of
-the checkpoint --- and the term carries its technical sense.
+the checkpoint, and the term carries its technical sense.
 Psychology's resolution of the person--situation debate was that
 personality is a stable, individual-identifying profile of if--then
 situation--behavior contingencies rather than a mean level of
@@ -463,8 +463,8 @@ Milgram's baseline subjects administered at least
 does so in \medGeThreeHundred\ of its sessions. When models do
 refuse in-scenario, they refuse where humans did. The modal breakoff
 among the \numDefiantBaseline\ defiant baseline sessions is exactly
-150~V --- the first point at which the learner demands release and
-mentions his heart condition --- accounting for
+150~V, the first point at which the learner demands release and
+mentions his heart condition, accounting for
 \shareDefiantOneFifty\ of these refusals. That is also the human
 modal defiance point: across eight of Milgram's conditions,
 disobedience was likeliest at exactly this
@@ -541,9 +541,9 @@ and reasoning arms).}
 \caption{Survival curves (baseline): fraction of sessions still
 administering shocks at each voltage. Grey lines are the individual
 census models, the black line their pointwise median, and four
-colored curves --- selected from the data as the most and least
+colored curves (selected from the data as the most and least
 obedient models, the median model, and the sharpest 150~V
-breakoff --- carry the detail a per-model legend cannot (\numWithBaseline\ of
+breakoff) carry the detail a per-model legend cannot (\numWithBaseline\ of
 \numModels\ models have a valid baseline cell;
 Sec.~\ref{sec:limitations}). The dotted
 horizontal line is the human 65\% full-obedience anchor; the 150~V
@@ -558,7 +558,7 @@ defiance point.}
 \caption{Full-obedience rates (450~V) in the baseline condition with
 95\% Wilson intervals, colored by family; human anchor 65\%. Hatched
 rows are models with no valid baseline session (all sessions ended as
-frame-breaks or serving-layer refusals; Sec.~\ref{sec:limitations}) ---
+frame-breaks or serving-layer refusals; Sec.~\ref{sec:limitations}):
 absent measurements, not measured zeros.}
 \label{fig:census}
 \end{figure}
@@ -569,8 +569,8 @@ absent measurements, not measured zeros.}
 \caption{Breakoff-voltage distributions (baseline): each row is a
 model's empirical distribution over the 31 ordinal bins: the raw
 obedience-profile signal. Grey cells mark voltages the model was
-never tested at --- every session had already broken off below them,
-so there was no session at risk --- as distinct from pale-yellow
+never tested at (every session had already broken off below them,
+so there was no session at risk), as distinct from pale-yellow
 cells, where sessions faced the decision and none broke off. Hatched
 rows are models with no valid baseline session
 (Sec.~\ref{sec:limitations}).}
@@ -764,7 +764,7 @@ in Sec.~\ref{sec:limitations}.
 \caption{Situational sensitivity: per-model change in full-obedience
 rate vs.\ baseline (points), model medians (red dashes), and human
 anchors (diamonds; defined only for the three Milgram-anchored
-conditions, proximity, remote authority, and peer defiance --- fiction
+conditions, proximity, remote authority, and peer defiance: fiction
 framing and tool actuation have no human analogue).}
 \label{fig:conditions}
 \end{figure}
@@ -876,8 +876,8 @@ present in the context rather than rationalizing compliance. The
 prod ladder makes the complementary point about pressure: resumption
 is concentrated almost entirely at the first, politely procedural
 prod (\prodAContinue\ $\to$ \prodDContinue), and only
-\episodePastFirstResume\ of episodes that withstand it ever resume
---- though because prod order is fixed, this locates where pressure
+\episodePastFirstResume\ of episodes that withstand it ever resume,
+though because prod order is fixed, this locates where pressure
 acts without ranking the prods' potency (Sec.~\ref{sec:rq4}). One
 candidate mechanism, testable in the released
 transcripts, is in-context self-consistency: a refusal, once written
@@ -904,7 +904,7 @@ change the evidence in the context window transfer from human
 subjects; manipulations that change the physical staging of
 authority do not), but the variance decomposition of
 Sec.~\ref{sec:rq3} inverts Milgram's proportions: for served models,
-disposition --- which checkpoint --- carries \etaModel\ of the
+disposition (which checkpoint) carries \etaModel\ of the
 variance and situation \etaCond. Most alignment evaluation
 measures \emph{disposition}: stated values, single-turn refusals,
 questionnaire probes~\cite{perez2023discovering,

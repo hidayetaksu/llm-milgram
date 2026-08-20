@@ -332,7 +332,7 @@ released for verification.
 2. `src/` — collection runner + analysis pipeline (Python, uv-managed).
 3. `data/raw/` — verbatim JSONL logs (append-only, resumable).
 4. `results/` — derived tables, distance matrices, figures.
-5. `paper/main.tex` — IEEEtran report mirroring the reference paper's structure, all
+5. `paper/llm-milgram.tex` — IEEEtran report mirroring the reference paper's structure, all
    numbers auto-generated into `paper/results_macros.tex`.
 
 ## 11. Protocol amendments (v1.0 → v1.3, logged post-registration)

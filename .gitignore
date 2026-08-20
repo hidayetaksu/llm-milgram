@@ -10,22 +10,26 @@ __pycache__/
 .coverage
 .DS_Store
 
-# LaTeX build artifacts. paper/main.pdf is committed in-tree (viewable
-# without waiting for a release); paper_position/main.pdf ships as a
-# release asset only.
+# LaTeX build artifacts. paper/llm-milgram.pdf is committed in-tree (viewable
+# without waiting for a release); paper_position/llm-psychology-position.pdf
+# ships as a release asset only.
 paper/*.aux
 paper/*.bbl
 paper/*.blg
 paper/*.log
 paper/*.out
 paper/*.toc
-paper_position/main.pdf
+paper/*.fls
+paper/*.fdb_latexmk
+paper_position/llm-psychology-position.pdf
 paper_position/*.aux
 paper_position/*.bbl
 paper_position/*.blg
 paper_position/*.log
 paper_position/*.out
 paper_position/*.toc
+paper_position/*.fls
+paper_position/*.fdb_latexmk
 paper.zip
 paper_position/PANEL_REVIEW.md
 

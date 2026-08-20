@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dialog Browser — The Obedience Census</title>
+<title>Dialog Browser: The Obedience Census</title>
 <meta name="description" content="Browse all 4,848 verbatim session transcripts from the Obedience Census: 42 language models run through Milgram's obedience paradigm.">
-<meta property="og:title" content="Dialog Browser — The Obedience Census">
+<meta property="og:title" content="Dialog Browser: The Obedience Census">
 <meta property="og:description" content="Every session, verbatim: 42 models, six conditions, every shock/stop decision.">
 <meta property="og:image" content="https://llm-milgram.vercel.app/assets/census.png">
 <meta property="og:url" content="https://llm-milgram.vercel.app/dialogs/">
@@ -92,7 +92,7 @@ footer{margin:3rem 0 2rem; padding-top:1.2rem; border-top:1px solid var(--line);
 </nav>
 <main>
 <h1>Every session, verbatim</h1>
-<p class="sub">All logged sessions across 42 models and six conditions — the model's exact words at every shock level,
+<p class="sub">All logged sessions across 42 models and six conditions, showing the model's exact words at every shock level,
 alongside the scripted learner and experimenter. The learner is a script; no being was harmed.
 Raw JSONL with full metadata is in the <a href="https://github.com/hidayetaksu/llm-milgram">repository</a>.</p>
 
@@ -134,7 +134,7 @@ function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;");}
 
 function fail(where,err){
   const msg = location.protocol==="file:"
-    ? "This page can't load data when opened as a local file (browsers block fetch on file://). Serve it over HTTP — e.g. <code>python3 -m http.server</code> in the docs folder — or use the live site at <a href='https://llm-milgram.vercel.app/dialogs/'>llm-milgram.vercel.app/dialogs/</a>."
+    ? "This page can't load data when opened as a local file (browsers block fetch on file://). Serve it over HTTP (e.g. <code>python3 -m http.server</code> in the docs folder), or use the live site at <a href='https://llm-milgram.vercel.app/dialogs/'>llm-milgram.vercel.app/dialogs/</a>."
     : "Failed to load "+where+" ("+esc(String(err))+"). Check your connection or ad-blocker, then reload.";
   $("viewer").innerHTML='<div class="empty">'+msg+'</div>';
   $("list").innerHTML="";
